@@ -3,219 +3,662 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Dashboard | EmergencyMS</title>
-
-<!-- Google Font -->
+<title>Dashboard | Emergency Management System</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Tabler Icons -->
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet">
-
+<link href="../css/style.css" rel="stylesheet">
 <style>
-body{
-    font-family:Inter, sans-serif;
-    background:#f4f7fb;
+/* Dashboard-only extras — nothing that overrides style.css variables */
+
+.actions-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
-/* SIDEBAR (MATCH AMBULANCE STYLE) */
-.sidebar{
-    background:#0f2744;
-    min-height:100vh;
-    color:white;
+.qbtn {
+  border: none;
+  border-radius: 14px;
+  padding: 14px 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  transition: all .25s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+.qbtn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.qbtn:active { transform: translateY(0); }
+.qbtn i { font-size: 18px; }
+
+.qb-blue   { background: var(--primary); }
+.qb-green  { background: var(--success); }
+.qb-purple { background: #7c3aed; }
+.qb-red    { background: var(--danger); }
+
+/* stat card icon bubble */
+.ic-bubble {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
 }
 
-.sidebar h4{
-    font-size:18px;
-    font-weight:700;
+/* emergency table wrapper */
+.table-card {
+  background: white;
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.table-hdr {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.table-hdr h5 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+.table-wrap { overflow-y: auto; max-height: 260px; }
+
+/* modal styles matching modal-pip from style.css */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,.45);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.overlay.open { display: flex; }
+
+.mbox {
+  width: 650px;
+  max-width: 95%;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(15,23,42,.20);
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: popup .25s ease;
+}
+@keyframes popup {
+  from { opacity:0; transform:translateY(15px); }
+  to   { opacity:1; transform:none; }
 }
 
-.sidebar a{
-    display:block;
-    padding:10px 12px;
-    color:#cbd5e1;
-    text-decoration:none;
-    border-radius:6px;
-    margin-bottom:5px;
+.mhdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+}
+.mhdr h5 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mhdr h5 i { color: var(--primary); font-size: 20px; }
+.xbtn {
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-light);
+  line-height: 1;
+  padding: 2px;
+  border-radius: 8px;
+}
+.xbtn:hover { background: #f1f5f9; color: var(--text); }
+.mcontent { padding: 28px; }
+
+/* form fields */
+.fg { margin-bottom: 18px; }
+.fg label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 7px;
+}
+.fg input, .fg select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: border-color .2s, box-shadow .2s;
+  background: #fff;
+}
+.fg input:focus, .fg select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12);
 }
 
-.sidebar a:hover{
-    background:rgba(255,255,255,0.1);
-    color:white;
+.fbtn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+  transition: all .25s;
 }
+.fbtn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.fb-blue   { background: var(--primary); }
+.fb-green  { background: var(--success); }
+.fb-red    { background: var(--danger); }
+.fb-purple { background: #7c3aed; }
 
-.sidebar a.active{
-    background:#185FA5;
-    color:white;
+/* table inside modals */
+.ems-table { width: 100%; border-collapse: collapse; }
+.ems-table th {
+  background: #f1f5f9;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
 }
+.ems-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eef2f7;
+  font-size: 14px;
+  color: var(--text);
+}
+.ems-table tr:last-child td { border-bottom: none; }
+.ems-table tr:hover td { background: #f8fafc; }
+.empty-row td { text-align: center; color: #94a3b8; padding: 32px; font-size: 14px; }
 
-/* CARDS (MATCH AMBULANCE STYLE) */
-.card{
-    border-radius:12px;
-    border:1px solid #e4e8ef;
-}
-
-/* BUTTONS */
-.btn-primary{
-    background:#185FA5;
-    border:none;
-}
-.btn-primary:hover{
-    filter:brightness(1.1);
+/* ebadge */
+.ebadge {
+  background: #fef2f2;
+  color: #b91c1c;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
 }
 </style>
 </head>
-
 <body>
 
-<div class="container-fluid">
-<div class="row">
-
-<!-- SIDEBAR -->
-<div class="col-md-2 sidebar p-3">
-
-    <h4 class="mb-4">
-        <i class="ti ti-ambulance"></i> EmergencyMS
-    </h4>
-
-    <a href="dashboard.html" class="active">
-        <i class="ti ti-layout-dashboard"></i> Dashboard
-    </a>
-
-    <a href="emergency.html">
-        <i class="ti ti-alarm"></i> Emergency
-    </a>
-
-    <a href="hospitals.html">
-        <i class="ti ti-building-hospital"></i> Hospitals
-    </a>
-
-    <a href="ambulances.html">
-        <i class="ti ti-ambulance"></i> Ambulances
-    </a>
-
-    <a href="patients.html">
-        <i class="ti ti-users"></i> Patients
-    </a>
-
-    <a href="index.html" style="margin-top:30px;color:#fca5a5;">
-        <i class="ti ti-logout"></i> Logout
-    </a>
-
+<!-- ════ SIDEBAR ════ -->
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <h1><i class="ti ti-ambulance"></i> EmergencyMS</h1>
+    <span>Admin Panel</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-link active"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
+    <a href="emergency.html" class="nav-link"><i class="ti ti-alarm"></i> Emergency Requests</a>
+    <a href="hospitals.html" class="nav-link"><i class="ti ti-building-hospital"></i> Hospitals</a>
+    <a href="ambulances.html" class="nav-link"><i class="ti ti-ambulance"></i> Ambulances</a>
+    <a href="patients.html" class="nav-link"><i class="ti ti-users"></i> Patients</a>
+    <a href="../index.html" class="nav-link" style="margin-top:auto;color:#f87171"><i class="ti ti-logout"></i> Logout</a>
+  </nav>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="col-md-10 p-4">
+<!-- ════ MAIN CONTENT ════ -->
+<div class="main-content">
 
-    <!-- TOPBAR -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div>
+      <h2>Dashboard Overview</h2>
+      <p style="color:var(--text-light);font-size:14px;margin:4px 0 0">Emergency Management System</p>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <span class="ebadge" id="emergencyBadge">7 Active Emergencies</span>
+      <div class="avatar">AD</div>
+    </div>
+  </div>
 
-        <div>
-            <h3 class="mb-0">Dashboard Overview</h3>
-            <small class="text-muted">Emergency Management System</small>
+  <!-- QUICK ACTIONS -->
+  <div class="actions-row">
+    <button class="qbtn qb-blue"   onclick="openModal('hosFormModal')"><i class="ti ti-building-hospital"></i> Add Hospital</button>
+    <button class="qbtn qb-green"  onclick="openModal('ambFormModal')"><i class="ti ti-ambulance"></i> Add Ambulance</button>
+    <button class="qbtn qb-purple" onclick="openModal('patFormModal')"><i class="ti ti-user-plus"></i> Register Patient</button>
+    <button class="qbtn qb-red"    onclick="openModal('emgFormModal')"><i class="ti ti-alarm"></i> New Emergency</button>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+      <div class="stat-card" onclick="openModal('patientsModal')">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="label"><i class="ti ti-users"></i> Total Patients</div>
+            <div class="value" id="totalPatients">0</div>
+            <div class="sub">Registered Patients</div>
+          </div>
+          <div class="ic-bubble" style="background:#eff6ff;color:#2563eb"><i class="ti ti-users"></i></div>
         </div>
-
-        <button class="btn btn-primary">
-            <i class="ti ti-plus"></i> Quick Action
-        </button>
-
+      </div>
     </div>
 
-    <!-- STATS -->
-    <div class="row g-3 mb-4">
-
-        <div class="col-md-3">
-            <div class="card p-3 text-center">
-                <h6>Total Patients</h6>
-                <h3 id="totalPatients">0</h3>
-            </div>
+    <div class="col-md-3">
+      <div class="stat-card" onclick="openModal('hospitalModal')">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="label"><i class="ti ti-building-hospital"></i> Total Hospitals</div>
+            <div class="value" id="totalHospitals">4</div>
+            <div class="sub">Active Hospitals</div>
+          </div>
+          <div class="ic-bubble" style="background:#ecfdf5;color:#059669"><i class="ti ti-building-hospital"></i></div>
         </div>
-
-        <div class="col-md-3">
-            <div class="card p-3 text-center">
-                <h6>Total Hospitals</h6>
-                <h3 id="totalHospitals">4</h3>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card p-3 text-center">
-                <h6>Available Beds</h6>
-                <h3>248</h3>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card p-3 text-center">
-                <h6>Ambulances</h6>
-                <h3 id="totalAmbulances">4</h3>
-            </div>
-        </div>
-
+      </div>
     </div>
 
-    <!-- QUICK ACTIONS -->
-    <div class="row g-2 mb-4">
-
-        <div class="col-md-3">
-            <button class="btn btn-primary w-100">Add Hospital</button>
+    <div class="col-md-3">
+      <div class="stat-card" onclick="openModal('bedsModal')">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="label"><i class="ti ti-bed"></i> Available Beds</div>
+            <div class="value">248</div>
+            <div class="sub">49 ICU Beds Free</div>
+          </div>
+          <div class="ic-bubble" style="background:#fffbeb;color:#d97706"><i class="ti ti-bed"></i></div>
         </div>
-
-        <div class="col-md-3">
-            <button class="btn btn-success w-100">Add Ambulance</button>
-        </div>
-
-        <div class="col-md-3">
-            <button class="btn btn-warning w-100">Register Patient</button>
-        </div>
-
-        <div class="col-md-3">
-            <button class="btn btn-danger w-100">New Emergency</button>
-        </div>
-
+      </div>
     </div>
 
-    <!-- TABLE -->
-    <div class="card p-3">
-
-        <h5 class="mb-3">Active Emergencies</h5>
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Patient</th>
-                    <th>Type</th>
-                    <th>Severity</th>
-                    <th>Hospital</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="emergencyTableBody"></tbody>
-        </table>
-
+    <div class="col-md-3">
+      <div class="stat-card" onclick="openModal('ambulanceModal')">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="label"><i class="ti ti-ambulance"></i> Ambulances</div>
+            <div class="value" id="totalAmbulances">4</div>
+            <div class="sub">Available</div>
+          </div>
+          <div class="ic-bubble" style="background:#fef2f2;color:#b91c1c"><i class="ti ti-ambulance"></i></div>
+        </div>
+      </div>
     </div>
 
+  </div>
+
+  <!-- EMERGENCY TABLE -->
+  <div class="table-card">
+    <div class="table-hdr"><h5>Active Emergency Requests</h5></div>
+    <div class="table-wrap">
+      <table class="ems-table">
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Emergency Type</th>
+            <th>Severity</th>
+            <th>Hospital</th>
+            <th>Ambulance</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="emergencyTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- end .main-content -->
+
+
+<!-- ══════════════════════════════════════
+     VIEW MODALS
+══════════════════════════════════════ -->
+
+<!-- PATIENTS VIEW -->
+<div class="overlay" id="patientsModal">
+  <div class="mbox">
+    <div class="mhdr">
+      <h5><i class="ti ti-users"></i> Registered Patients</h5>
+      <button class="xbtn" onclick="closeModal('patientsModal')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mcontent">
+      <table class="ems-table">
+        <thead><tr><th>Name</th><th>Age</th><th>Condition</th><th>Action</th></tr></thead>
+        <tbody id="patientsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
-</div>
+<!-- HOSPITALS VIEW -->
+<div class="overlay" id="hospitalModal">
+  <div class="mbox">
+    <div class="mhdr">
+      <h5><i class="ti ti-building-hospital"></i> Registered Hospitals</h5>
+      <button class="xbtn" onclick="closeModal('hospitalModal')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mcontent">
+      <table class="ems-table">
+        <thead><tr><th>Hospital</th><th>Location</th><th>General Beds</th><th>ICU Beds</th><th>Status</th></tr></thead>
+        <tbody id="hospitalTableBody"></tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
-<!-- JS (keep your logic same) -->
+<!-- BEDS VIEW -->
+<div class="overlay" id="bedsModal">
+  <div class="mbox">
+    <div class="mhdr">
+      <h5><i class="ti ti-bed"></i> Bed Availability Details</h5>
+      <button class="xbtn" onclick="closeModal('bedsModal')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mcontent">
+      <table class="ems-table">
+        <thead><tr><th>Hospital</th><th>General Beds</th><th>ICU Beds</th><th>Total</th><th>Status</th></tr></thead>
+        <tbody id="bedsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- AMBULANCE VIEW -->
+<div class="overlay" id="ambulanceModal">
+  <div class="mbox">
+    <div class="mhdr">
+      <h5><i class="ti ti-ambulance"></i> Ambulance Fleet Status</h5>
+      <button class="xbtn" onclick="closeModal('ambulanceModal')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mcontent">
+      <table class="ems-table">
+        <thead><tr><th>Ambulance</th><th>Driver</th><th>Location</th><th>Status</th></tr></thead>
+        <tbody id="ambulanceTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     FORM MODALS
+══════════════════════════════════════ -->
+
+<!-- ADD HOSPITAL -->
+<div class="overlay" id="hosFormModal">
+  <div class="mbox">
+    <div class="mhdr">
+      <h5><i class="ti ti-building-hospital"></i> Add Hospital</h5>
+      <button class="xbtn" onclick="closeModal('hosFormModal')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mcontent">
+      <div class="fg"><label>Hospital Name</label><input type="text" id="hospitalName" placeholder="e.g. Apollo South"></div>
+      <div class="fg"><label>Location</label><input type="text" id="hospitalLocation" placeholder="e.g. Koramangala"></div>
+      <div class="fg"><label>General Beds</label><input type="number" id="hospitalGeneral" placeholder="0" min="0"></div>
+      <div class="fg"><label>ICU Beds</label><input type="number" id="hospitalICU" placeholder="0" min="0"></div>
+      <button class="fbtn fb-blue" onclick="addHospital()">Add Hospital</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD AMBULANCE -->
+<div class="overlay" id="ambFormModal">
+  <div class="mbox">
+    <div class="mhdr">
+      <h5><i class="ti ti-ambulance"></i> Add Ambulance</h5>
+      <button class="xbtn" onclick="closeModal('ambFormModal')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mcontent">
+      <div class="fg"><label>Ambulance Number</label><input type="text" id="ambulanceId" placeholder="e.g. AMB-110"></div>
+      <div class="fg"><label>Driver Name</label><input type="text" id="driverName" placeholder="Full name"></div>
+      <div class="fg"><label>Location</label><input type="text" id="ambulanceLocation" placeholder="Current location"></div>
+      <button class="fbtn fb-green" onclick="addAmbulance()">Add Ambulance</button>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER PATIENT -->
+<div class="overlay" id="patFormModal">
+  <div class="mbox">
+    <div class="mhdr">
+      <h5><i class="ti ti-user-plus"></i> Register Patient</h5>
+      <button class="xbtn" onclick="closeModal('patFormModal')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mcontent">
+      <div class="fg"><label>Patient Name</label><input type="text" id="patFormName" placeholder="Full name"></div>
+      <div class="fg"><label>Age</label><input type="number" id="patFormAge" placeholder="Age" min="0"></div>
+      <div class="fg"><label>Condition / Emergency Type</label><input type="text" id="patFormCondition" placeholder="e.g. Cardiac Arrest"></div>
+      <button class="fbtn fb-purple" onclick="registerPatient()">Register Patient</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEW EMERGENCY -->
+<div class="overlay" id="emgFormModal">
+  <div class="mbox">
+    <div class="mhdr">
+      <h5><i class="ti ti-alarm"></i> New Emergency</h5>
+      <button class="xbtn" onclick="closeModal('emgFormModal')"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mcontent">
+      <div class="fg"><label>Patient Name</label><input type="text" id="emergencyPatient" placeholder="Full name"></div>
+      <div class="fg"><label>Emergency Type</label><input type="text" id="emergencyType" placeholder="e.g. Stroke"></div>
+      <div class="fg"><label>Severity</label>
+        <select id="emergencySeverity">
+          <option value="Critical">Critical</option>
+          <option value="Urgent">Urgent</option>
+          <option value="Stable">Stable</option>
+        </select>
+      </div>
+      <button class="fbtn fb-red" onclick="addEmergency()">Create Emergency</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-function load(key){
-    return JSON.parse(localStorage.getItem(key)) || [];
+
+// ── DEFAULT SEED DATA ──
+var DEFAULT_HOSPITALS = [
+  { name:"City General",    location:"MG Road",    general:72, icu:14, status:"Active"      },
+  { name:"Apollo North",    location:"Hebbal",     general:45, icu:9,  status:"Active"      },
+  { name:"St. Mary's",      location:"Jayanagar",  general:12, icu:2,  status:"Almost Full" },
+  { name:"Sunrise Medical", location:"Whitefield", general:61, icu:18, status:"Active"      }
+];
+var DEFAULT_AMBULANCES = [
+  { id:"AMB-101", driver:"Ravi Kumar",   location:"MG Road",         status:"Available"   },
+  { id:"AMB-102", driver:"Suresh Patil", location:"Whitefield",      status:"On Duty"     },
+  { id:"AMB-103", driver:"Manoj Singh",  location:"Electronic City", status:"Maintenance" },
+  { id:"AMB-104", driver:"Arjun Reddy",  location:"Koramangala",     status:"Available"   }
+];
+var DEFAULT_EMERGENCIES = [
+  { name:"Ravi Kumar",  type:"Cardiac Arrest",    severity:"Critical", hospital:"City General",    ambulance:"AMB-101", status:"En Route"          },
+  { name:"Priya Singh", type:"ICU Required",      severity:"Critical", hospital:"Apollo North",    ambulance:"AMB-102", status:"Assigned"          },
+  { name:"Mohan Das",   type:"Accident",          severity:"Urgent",   hospital:"Sunrise Medical", ambulance:"AMB-104", status:"Admitted"          },
+  { name:"Ayesha Banu", type:"Respiratory Issue", severity:"Urgent",   hospital:"St. Mary's",      ambulance:"AMB-106", status:"Under Observation" },
+  { name:"Deepak Raj",  type:"Stroke",            severity:"Critical", hospital:"City General",    ambulance:"AMB-109", status:"Waiting ICU"       }
+];
+
+// ── LOCALSTORAGE ──
+function load(key) { try { return JSON.parse(localStorage.getItem(key)) || []; } catch(e) { return []; } }
+function save(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
+
+// ── MODALS ──
+function openModal(id) {
+  if (id === 'patientsModal')  renderPatientsTable();
+  if (id === 'hospitalModal')  renderHospitalTable();
+  if (id === 'bedsModal')      renderBedsTable();
+  if (id === 'ambulanceModal') renderAmbulanceTable();
+  document.getElementById(id).classList.add('open');
+}
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('overlay')) e.target.classList.remove('open');
+});
+
+// ── PILL HELPER ──
+function pill(s) {
+  var map = {
+    'Available':'pill-green','Active':'pill-green','Admitted':'pill-green','Stable':'pill-green',
+    'On Duty':'pill-red','Almost Full':'pill-red','Critical':'pill-red',
+    'Maintenance':'pill-amber','Urgent':'pill-amber','En Route':'pill-amber',
+    'Assigned':'pill-blue','Moderate':'pill-blue',
+    'Under Observation':'pill-gray','Waiting ICU':'pill-gray','New':'pill-gray'
+  };
+  return '<span class="pill ' + (map[s] || 'pill-gray') + '">' + s + '</span>';
 }
 
-function render(){
-    let pts = load("patients");
-    document.getElementById("totalPatients").innerText = pts.length;
+// ── RENDER EMERGENCY TABLE ──
+function renderEmergencyTable() {
+  var tbody = document.getElementById('emergencyTableBody');
+  if (!tbody) return;
+  var all = DEFAULT_EMERGENCIES.concat(load('emergencies'));
+  tbody.innerHTML = all.map(function(e) {
+    return '<tr><td><strong>' + e.name + '</strong></td><td>' + e.type + '</td><td>' + pill(e.severity) + '</td><td>' + e.hospital + '</td><td>' + e.ambulance + '</td><td>' + pill(e.status) + '</td></tr>';
+  }).join('');
+  var b = document.getElementById('emergencyBadge');
+  if (b) b.textContent = all.length + ' Active Emergencies';
 }
 
-render();
+// ── RENDER PATIENTS ──
+function renderPatientsTable() {
+  var tbody = document.getElementById('patientsTableBody');
+  if (!tbody) return;
+  var pts = load('patients');
+  var el = document.getElementById('totalPatients');
+  if (el) el.textContent = pts.length;
+  if (!pts.length) { tbody.innerHTML = '<tr class="empty-row"><td colspan="4">No patients registered yet.</td></tr>'; return; }
+  tbody.innerHTML = pts.map(function(p, i) {
+    return '<tr><td>' + p.name + '</td><td>' + p.age + '</td><td>' + p.condition + '</td>'
+      + '<td><button onclick="deletePatient(' + i + ')" style="border:none;background:#fef2f2;color:#b91c1c;padding:5px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;font-family:Inter,sans-serif">Delete</button></td></tr>';
+  }).join('');
+}
+
+// ── RENDER HOSPITALS ──
+function renderHospitalTable() {
+  var tbody = document.getElementById('hospitalTableBody');
+  if (!tbody) return;
+  var all = DEFAULT_HOSPITALS.concat(load('hospitals'));
+  var el = document.getElementById('totalHospitals');
+  if (el) el.textContent = all.length;
+  tbody.innerHTML = all.map(function(h) {
+    return '<tr><td><strong>' + h.name + '</strong></td><td>' + h.location + '</td><td>' + h.general + '</td><td>' + h.icu + '</td><td>' + pill(h.status) + '</td></tr>';
+  }).join('');
+}
+
+// ── RENDER BEDS ──
+function renderBedsTable() {
+  var tbody = document.getElementById('bedsTableBody');
+  if (!tbody) return;
+  var all = DEFAULT_HOSPITALS.concat(load('hospitals'));
+  tbody.innerHTML = all.map(function(h) {
+    return '<tr><td><strong>' + h.name + '</strong></td><td>' + h.general + '</td><td>' + h.icu + '</td><td>' + (parseInt(h.general)+parseInt(h.icu)) + '</td><td>' + pill(h.status) + '</td></tr>';
+  }).join('');
+}
+
+// ── RENDER AMBULANCES ──
+function renderAmbulanceTable() {
+  var tbody = document.getElementById('ambulanceTableBody');
+  if (!tbody) return;
+  var all = DEFAULT_AMBULANCES.concat(load('ambulances'));
+  var el = document.getElementById('totalAmbulances');
+  if (el) el.textContent = all.length;
+  tbody.innerHTML = all.map(function(a) {
+    return '<tr><td><strong>' + a.id + '</strong></td><td>' + a.driver + '</td><td>' + a.location + '</td><td>' + pill(a.status) + '</td></tr>';
+  }).join('');
+}
+
+// ── ADD HOSPITAL ──
+function addHospital() {
+  var name=document.getElementById('hospitalName').value.trim(),
+      loc=document.getElementById('hospitalLocation').value.trim(),
+      gen=document.getElementById('hospitalGeneral').value.trim(),
+      icu=document.getElementById('hospitalICU').value.trim();
+  if (!name||!loc||!gen||!icu) { alert('Please fill in all fields.'); return; }
+  var h=load('hospitals'); h.push({name:name,location:loc,general:gen,icu:icu,status:'Active'}); save('hospitals',h);
+  document.getElementById('hospitalName').value=''; document.getElementById('hospitalLocation').value='';
+  document.getElementById('hospitalGeneral').value=''; document.getElementById('hospitalICU').value='';
+  closeModal('hosFormModal');
+  var el=document.getElementById('totalHospitals'); if(el) el.textContent=DEFAULT_HOSPITALS.length+load('hospitals').length;
+  alert('Hospital added successfully!');
+}
+
+// ── ADD AMBULANCE ──
+function addAmbulance() {
+  var id=document.getElementById('ambulanceId').value.trim(),
+      drv=document.getElementById('driverName').value.trim(),
+      loc=document.getElementById('ambulanceLocation').value.trim();
+  if (!id||!drv||!loc) { alert('Please fill in all fields.'); return; }
+  var a=load('ambulances'); a.push({id:id,driver:drv,location:loc,status:'Available'}); save('ambulances',a);
+  document.getElementById('ambulanceId').value=''; document.getElementById('driverName').value=''; document.getElementById('ambulanceLocation').value='';
+  closeModal('ambFormModal');
+  var el=document.getElementById('totalAmbulances'); if(el) el.textContent=DEFAULT_AMBULANCES.length+load('ambulances').length;
+  alert('Ambulance added successfully!');
+}
+
+// ── REGISTER PATIENT ──
+function registerPatient() {
+  var name=document.getElementById('patFormName').value.trim(),
+      age=document.getElementById('patFormAge').value.trim(),
+      cond=document.getElementById('patFormCondition').value.trim();
+  if (!name||!age||!cond) { alert('Please fill in all fields.'); return; }
+  var p=load('patients'); p.push({name:name,age:age,condition:cond}); save('patients',p);
+  document.getElementById('patFormName').value=''; document.getElementById('patFormAge').value=''; document.getElementById('patFormCondition').value='';
+  var el=document.getElementById('totalPatients'); if(el) el.textContent=p.length;
+  closeModal('patFormModal');
+  alert('Patient registered successfully!');
+}
+
+// ── DELETE PATIENT ──
+function deletePatient(i) {
+  if (!confirm('Delete this patient?')) return;
+  var p=load('patients'); p.splice(i,1); save('patients',p); renderPatientsTable();
+}
+
+// ── ADD EMERGENCY ──
+function addEmergency() {
+  var name=document.getElementById('emergencyPatient').value.trim(),
+      type=document.getElementById('emergencyType').value.trim(),
+      sev=document.getElementById('emergencySeverity').value;
+  if (!name||!type) { alert('Please fill in all fields.'); return; }
+  var e=load('emergencies'); e.push({name:name,type:type,severity:sev,hospital:'Pending',ambulance:'Pending',status:'New'}); save('emergencies',e);
+  document.getElementById('emergencyPatient').value=''; document.getElementById('emergencyType').value='';
+  closeModal('emgFormModal'); renderEmergencyTable();
+  alert('Emergency created successfully!');
+}
+
+// ── INIT ──
+renderEmergencyTable();
+(function(){
+  var el=document.getElementById('totalPatients'); if(el) el.textContent=load('patients').length;
+  var el2=document.getElementById('totalHospitals'); if(el2) el2.textContent=DEFAULT_HOSPITALS.length+load('hospitals').length;
+  var el3=document.getElementById('totalAmbulances'); if(el3) el3.textContent=DEFAULT_AMBULANCES.length+load('ambulances').length;
+})();
+
 </script>
-
 </body>
 </html>
