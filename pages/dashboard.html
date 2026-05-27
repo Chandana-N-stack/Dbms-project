@@ -11,7 +11,6 @@
 html,body{height:100%;overflow:hidden;font-family:Arial,sans-serif}
 .wrap{display:flex;height:100vh;overflow:hidden}
 
-/* SIDEBAR */
 .sidebar{width:220px;background:#0f2744;padding:18px 12px;display:flex;flex-direction:column;gap:2px;flex-shrink:0}
 .brand{padding:8px 6px 18px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:10px}
 .brand h1{color:#fff;font-size:15px;font-weight:500;display:flex;align-items:center;gap:7px}
@@ -21,17 +20,14 @@ html,body{height:100%;overflow:hidden;font-family:Arial,sans-serif}
 .nav-link i{font-size:17px}
 .nav-link.logout{margin-top:auto}
 
-/* MAIN */
 .main{flex:1;padding:20px;overflow:hidden;display:flex;flex-direction:column;gap:14px;min-width:0}
 
-/* TOPBAR */
 .topbar{display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .topbar h2{font-size:17px;font-weight:600;color:#1a1a2e}
 .topbar small{color:#666;font-size:12px;display:block}
 .bdg-red{background:#fce8e8;color:#a32d2d;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500}
 .avatar{width:34px;height:34px;border-radius:50%;background:#185FA5;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
 
-/* QUICK ACTIONS */
 .actions-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex-shrink:0}
 .qbtn{border:none;border-radius:10px;padding:12px 8px;color:#fff;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:.15s;white-space:nowrap}
 .qbtn:hover{opacity:.88;transform:translateY(-2px)}
@@ -40,7 +36,6 @@ html,body{height:100%;overflow:hidden;font-family:Arial,sans-serif}
 .qb-purple{background:#6f42c1}
 .qb-red{background:#dc3545}
 
-/* STAT CARDS */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;flex-shrink:0}
 .scard{background:#fff;border:0.5px solid #e0e0e0;border-radius:11px;padding:14px 16px;cursor:pointer;transition:.2s}
 .scard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1);border-color:#bbb}
@@ -53,7 +48,6 @@ html,body{height:100%;overflow:hidden;font-family:Arial,sans-serif}
 .ic-green{background:#28a745}
 .ic-orange{background:#fd7e14}
 
-/* TABLE CARD */
 .table-card{background:#fff;border:0.5px solid #e0e0e0;border-radius:11px;overflow:hidden;flex:1;display:flex;flex-direction:column;min-height:0}
 .table-hdr{padding:12px 18px;border-bottom:0.5px solid #e0e0e0;flex-shrink:0}
 .table-hdr h5{font-size:14px;font-weight:600;color:#1a1a2e}
@@ -64,7 +58,6 @@ td{padding:9px 12px;color:#333;border-bottom:0.5px solid #f0f0f0;white-space:now
 tr:last-child td{border-bottom:none}
 tbody tr:hover{background:#fafafa}
 
-/* BADGES */
 .badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:500}
 .b-danger{background:#fce8e8;color:#a32d2d}
 .b-warning{background:#fef3e0;color:#854f0b}
@@ -73,7 +66,6 @@ tbody tr:hover{background:#fafafa}
 .b-primary{background:#ede9fe;color:#4c1d95}
 .b-dark{background:#f0f0f0;color:#444}
 
-/* MODALS */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;align-items:center;justify-content:center}
 .overlay.open{display:flex}
 .mbox{background:#fff;border-radius:12px;width:580px;max-width:90vw;max-height:80vh;overflow-y:auto;border:0.5px solid #ddd}
@@ -112,7 +104,7 @@ tbody tr:hover{background:#fafafa}
     <a class="nav-link logout"><i class="ti ti-logout"></i> Logout</a>
   </div>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <div class="main">
 
     <!-- TOPBAR -->
@@ -122,17 +114,17 @@ tbody tr:hover{background:#fafafa}
         <small>Emergency Management System</small>
       </div>
       <div style="display:flex;align-items:center;gap:10px">
-        <span class="bdg-red">7 Active Emergencies</span>
+        <span class="bdg-red" id="emergencyBadge">7 Active Emergencies</span>
         <div class="avatar">AD</div>
       </div>
     </div>
 
-    <!-- QUICK ACTIONS -->
+    <!-- QUICK ACTION BUTTONS -->
     <div class="actions-row">
-      <button class="qbtn qb-blue" onclick="om('hosFormModal')"><i class="ti ti-building-hospital"></i> Add Hospital</button>
-      <button class="qbtn qb-green" onclick="om('ambFormModal')"><i class="ti ti-ambulance"></i> Add Ambulance</button>
+      <button class="qbtn qb-blue"   onclick="om('hosFormModal')"><i class="ti ti-building-hospital"></i> Add Hospital</button>
+      <button class="qbtn qb-green"  onclick="om('ambFormModal')"><i class="ti ti-ambulance"></i> Add Ambulance</button>
       <button class="qbtn qb-purple" onclick="om('patFormModal')"><i class="ti ti-user-plus"></i> Register Patient</button>
-      <button class="qbtn qb-red" onclick="om('emgFormModal')"><i class="ti ti-alarm"></i> New Emergency</button>
+      <button class="qbtn qb-red"    onclick="om('emgFormModal')"><i class="ti ti-alarm"></i> New Emergency</button>
     </div>
 
     <!-- STAT CARDS -->
@@ -141,7 +133,7 @@ tbody tr:hover{background:#fafafa}
         <div class="scard-inner">
           <div>
             <div class="slabel">Total Patients</div>
-            <div class="snum">124</div>
+            <div class="snum" id="totalPatients">0</div>
             <div class="ssub" style="color:#185FA5">Registered Patients</div>
           </div>
           <div class="ic ic-blue"><i class="ti ti-users"></i></div>
@@ -151,8 +143,8 @@ tbody tr:hover{background:#fafafa}
         <div class="scard-inner">
           <div>
             <div class="slabel">Total Hospitals</div>
-            <div class="snum">12</div>
-            <div class="ssub" style="color:#28a745">10 Active Hospitals</div>
+            <div class="snum" id="totalHospitals">4</div>
+            <div class="ssub" style="color:#28a745">Active Hospitals</div>
           </div>
           <div class="ic ic-blue"><i class="ti ti-building-hospital"></i></div>
         </div>
@@ -171,8 +163,8 @@ tbody tr:hover{background:#fafafa}
         <div class="scard-inner">
           <div>
             <div class="slabel">Ambulances</div>
-            <div class="snum">18</div>
-            <div class="ssub" style="color:#185FA5">13 Available</div>
+            <div class="snum" id="totalAmbulances">4</div>
+            <div class="ssub" style="color:#185FA5">Available</div>
           </div>
           <div class="ic ic-orange"><i class="ti ti-ambulance"></i></div>
         </div>
@@ -194,37 +186,8 @@ tbody tr:hover{background:#fafafa}
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Ravi Kumar</td><td>Cardiac Arrest</td>
-              <td><span class="badge b-danger">Critical</span></td>
-              <td>City General</td><td>AMB-101</td>
-              <td><span class="badge b-warning">En Route</span></td>
-            </tr>
-            <tr>
-              <td>Priya Singh</td><td>ICU Required</td>
-              <td><span class="badge b-danger">Critical</span></td>
-              <td>Apollo North</td><td>AMB-102</td>
-              <td><span class="badge b-info">Assigned</span></td>
-            </tr>
-            <tr>
-              <td>Mohan Das</td><td>Accident</td>
-              <td><span class="badge b-warning">Urgent</span></td>
-              <td>Sunrise Medical</td><td>AMB-104</td>
-              <td><span class="badge b-success">Admitted</span></td>
-            </tr>
-            <tr>
-              <td>Ayesha Banu</td><td>Respiratory Issue</td>
-              <td><span class="badge b-warning">Urgent</span></td>
-              <td>St. Mary's</td><td>AMB-106</td>
-              <td><span class="badge b-primary">Under Observation</span></td>
-            </tr>
-            <tr>
-              <td>Deepak Raj</td><td>Stroke</td>
-              <td><span class="badge b-danger">Critical</span></td>
-              <td>City General</td><td>AMB-109</td>
-              <td><span class="badge b-dark">Waiting ICU</span></td>
-            </tr>
+          <tbody id="emergencyTableBody">
+            <!-- filled by script.js -->
           </tbody>
         </table>
       </div>
@@ -233,9 +196,9 @@ tbody tr:hover{background:#fafafa}
   </div>
 </div>
 
-<!-- ===== MODALS ===== -->
+<!-- ===== VIEW MODALS ===== -->
 
-<!-- PATIENTS MODAL -->
+<!-- PATIENTS VIEW MODAL -->
 <div class="overlay" id="patientsModal">
   <div class="mbox">
     <div class="mhdr">
@@ -244,20 +207,16 @@ tbody tr:hover{background:#fafafa}
     </div>
     <div class="mcontent">
       <table>
-        <thead><tr><th>Patient</th><th>Age</th><th>Emergency Type</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>Ravi Kumar</td><td>54</td><td>Cardiac Arrest</td><td><span class="badge b-danger">Critical</span></td></tr>
-          <tr><td>Priya Singh</td><td>41</td><td>ICU Required</td><td><span class="badge b-danger">Critical</span></td></tr>
-          <tr><td>Mohan Das</td><td>36</td><td>Accident</td><td><span class="badge b-warning">Urgent</span></td></tr>
-          <tr><td>Ayesha Banu</td><td>29</td><td>Respiratory Issue</td><td><span class="badge b-warning">Urgent</span></td></tr>
-          <tr><td>Deepak Raj</td><td>62</td><td>Stroke</td><td><span class="badge b-danger">Critical</span></td></tr>
+        <thead><tr><th>Name</th><th>Age</th><th>Condition</th><th>Action</th></tr></thead>
+        <tbody id="patientsTableBody">
+          <!-- filled by script.js -->
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- HOSPITALS MODAL -->
+<!-- HOSPITALS VIEW MODAL -->
 <div class="overlay" id="hospitalModal">
   <div class="mbox">
     <div class="mhdr">
@@ -267,18 +226,15 @@ tbody tr:hover{background:#fafafa}
     <div class="mcontent">
       <table>
         <thead><tr><th>Hospital</th><th>Location</th><th>General Beds</th><th>ICU Beds</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>City General</td><td>MG Road</td><td>72</td><td>14</td><td><span class="badge b-success">Active</span></td></tr>
-          <tr><td>Apollo North</td><td>Hebbal</td><td>45</td><td>9</td><td><span class="badge b-warning">Moderate</span></td></tr>
-          <tr><td>St. Mary's</td><td>Jayanagar</td><td>12</td><td>2</td><td><span class="badge b-danger">Almost Full</span></td></tr>
-          <tr><td>Sunrise Medical</td><td>Whitefield</td><td>61</td><td>18</td><td><span class="badge b-success">Active</span></td></tr>
+        <tbody id="hospitalTableBody">
+          <!-- filled by script.js -->
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- BEDS MODAL -->
+<!-- BEDS VIEW MODAL -->
 <div class="overlay" id="bedsModal">
   <div class="mbox">
     <div class="mhdr">
@@ -299,7 +255,7 @@ tbody tr:hover{background:#fafafa}
   </div>
 </div>
 
-<!-- AMBULANCE MODAL -->
+<!-- AMBULANCE VIEW MODAL -->
 <div class="overlay" id="ambulanceModal">
   <div class="mbox">
     <div class="mhdr">
@@ -309,16 +265,15 @@ tbody tr:hover{background:#fafafa}
     <div class="mcontent">
       <table>
         <thead><tr><th>Ambulance</th><th>Driver</th><th>Location</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>AMB-101</td><td>Ravi Kumar</td><td>MG Road</td><td><span class="badge b-success">Available</span></td></tr>
-          <tr><td>AMB-102</td><td>Suresh Patil</td><td>Whitefield</td><td><span class="badge b-danger">On Duty</span></td></tr>
-          <tr><td>AMB-103</td><td>Manoj Singh</td><td>Electronic City</td><td><span class="badge b-warning">Maintenance</span></td></tr>
-          <tr><td>AMB-104</td><td>Arjun Reddy</td><td>Koramangala</td><td><span class="badge b-success">Available</span></td></tr>
+        <tbody id="ambulanceTableBody">
+          <!-- filled by script.js -->
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+<!-- ===== FORM MODALS ===== -->
 
 <!-- ADD HOSPITAL FORM -->
 <div class="overlay" id="hosFormModal">
@@ -328,11 +283,11 @@ tbody tr:hover{background:#fafafa}
       <button class="xbtn" onclick="cm('hosFormModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
-      <div class="fg"><label>Hospital Name</label><input type="text" placeholder="e.g. Apollo South"></div>
-      <div class="fg"><label>Location</label><input type="text" placeholder="e.g. Koramangala"></div>
-      <div class="fg"><label>General Beds</label><input type="number" placeholder="0"></div>
-      <div class="fg"><label>ICU Beds</label><input type="number" placeholder="0"></div>
-      <button class="fbtn fb-blue">Add Hospital</button>
+      <div class="fg"><label>Hospital Name</label><input type="text" id="hospitalName" placeholder="e.g. Apollo South"></div>
+      <div class="fg"><label>Location</label><input type="text" id="hospitalLocation" placeholder="e.g. Koramangala"></div>
+      <div class="fg"><label>General Beds</label><input type="number" id="hospitalGeneral" placeholder="0"></div>
+      <div class="fg"><label>ICU Beds</label><input type="number" id="hospitalICU" placeholder="0"></div>
+      <button class="fbtn fb-blue" onclick="addHospital()">Add Hospital</button>
     </div>
   </div>
 </div>
@@ -345,10 +300,10 @@ tbody tr:hover{background:#fafafa}
       <button class="xbtn" onclick="cm('ambFormModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
-      <div class="fg"><label>Ambulance Number</label><input type="text" placeholder="e.g. AMB-110"></div>
-      <div class="fg"><label>Driver Name</label><input type="text" placeholder="Full name"></div>
-      <div class="fg"><label>Location</label><input type="text" placeholder="Current location"></div>
-      <button class="fbtn fb-green">Add Ambulance</button>
+      <div class="fg"><label>Ambulance Number</label><input type="text" id="ambulanceId" placeholder="e.g. AMB-110"></div>
+      <div class="fg"><label>Driver Name</label><input type="text" id="driverName" placeholder="Full name"></div>
+      <div class="fg"><label>Location</label><input type="text" id="ambulanceLocation" placeholder="Current location"></div>
+      <button class="fbtn fb-green" onclick="addAmbulance()">Add Ambulance</button>
     </div>
   </div>
 </div>
@@ -361,10 +316,10 @@ tbody tr:hover{background:#fafafa}
       <button class="xbtn" onclick="cm('patFormModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
-      <div class="fg"><label>Patient Name</label><input type="text" placeholder="Full name"></div>
-      <div class="fg"><label>Age</label><input type="number" placeholder="Age"></div>
-      <div class="fg"><label>Emergency Type</label><input type="text" placeholder="e.g. Cardiac Arrest"></div>
-      <button class="fbtn fb-purple">Register Patient</button>
+      <div class="fg"><label>Patient Name</label><input type="text" id="patFormName" placeholder="Full name"></div>
+      <div class="fg"><label>Age</label><input type="number" id="patFormAge" placeholder="Age"></div>
+      <div class="fg"><label>Emergency Type / Condition</label><input type="text" id="patFormCondition" placeholder="e.g. Cardiac Arrest"></div>
+      <button class="fbtn fb-purple" onclick="registerPatient()">Register Patient</button>
     </div>
   </div>
 </div>
@@ -377,23 +332,22 @@ tbody tr:hover{background:#fafafa}
       <button class="xbtn" onclick="cm('emgFormModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
-      <div class="fg"><label>Patient Name</label><input type="text" placeholder="Full name"></div>
-      <div class="fg"><label>Emergency Type</label><input type="text" placeholder="e.g. Stroke"></div>
+      <div class="fg"><label>Patient Name</label><input type="text" id="emergencyPatient" placeholder="Full name"></div>
+      <div class="fg"><label>Emergency Type</label><input type="text" id="emergencyType" placeholder="e.g. Stroke"></div>
       <div class="fg"><label>Severity</label>
-        <select><option>Critical</option><option>Urgent</option><option>Stable</option></select>
+        <select id="emergencySeverity">
+          <option>Critical</option>
+          <option>Urgent</option>
+          <option>Stable</option>
+        </select>
       </div>
-      <button class="fbtn fb-red">Create Emergency</button>
+      <button class="fbtn fb-red" onclick="addEmergency()">Create Emergency</button>
     </div>
   </div>
 </div>
 
-<script>
-  function om(id) { document.getElementById(id).classList.add('open'); }
-  function cm(id) { document.getElementById(id).classList.remove('open'); }
-  document.querySelectorAll('.overlay').forEach(o => {
-    o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
-  });
-</script>
+<!-- script.js MUST be at the bottom, just before </body> -->
+<script src="script.js"></script>
 
 </body>
 </html>
