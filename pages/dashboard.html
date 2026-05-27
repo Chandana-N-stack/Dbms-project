@@ -8,103 +8,117 @@
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;font-family:Arial,sans-serif}
+html,body{height:100%;overflow:hidden;font-family:Arial,sans-serif;background:#f4f7fb}
 .wrap{display:flex;height:100vh;overflow:hidden}
 
+/* ── SIDEBAR ── */
 .sidebar{width:220px;background:#0f2744;padding:18px 12px;display:flex;flex-direction:column;gap:2px;flex-shrink:0}
-.brand{padding:8px 6px 18px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:10px}
-.brand h1{color:#fff;font-size:15px;font-weight:500;display:flex;align-items:center;gap:7px}
+.brand{padding:8px 6px 18px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:10px}
+.brand h1{color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;gap:7px}
 .brand span{color:#8eadd4;font-size:11px;display:block;margin-top:3px}
-.nav-link{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;color:#8eadd4;font-size:13px;cursor:pointer;transition:.15s;text-decoration:none}
+.nav-link{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;color:#8eadd4;font-size:13px;cursor:pointer;transition:.15s;text-decoration:none;border:none;background:none;width:100%;text-align:left}
 .nav-link:hover,.nav-link.active{background:rgba(255,255,255,.1);color:#fff}
 .nav-link i{font-size:17px}
-.nav-link.logout{margin-top:auto}
+.logout{margin-top:auto}
 
-.main{flex:1;padding:20px;overflow:hidden;display:flex;flex-direction:column;gap:14px;min-width:0}
+/* ── MAIN ── */
+.main{flex:1;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0;overflow:hidden}
 
+/* ── TOPBAR ── */
 .topbar{display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-.topbar h2{font-size:17px;font-weight:600;color:#1a1a2e}
-.topbar small{color:#666;font-size:12px;display:block}
-.bdg-red{background:#fce8e8;color:#a32d2d;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500}
-.avatar{width:34px;height:34px;border-radius:50%;background:#185FA5;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
+.topbar h2{font-size:17px;font-weight:700;color:#1a1a2e}
+.topbar small{color:#666;font-size:12px;display:block;margin-top:2px}
+.ebadge{background:#fce8e8;color:#a32d2d;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600}
+.avatar{width:34px;height:34px;border-radius:50%;background:#185FA5;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
 
+/* ── QUICK ACTIONS ── */
 .actions-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex-shrink:0}
-.qbtn{border:none;border-radius:10px;padding:12px 8px;color:#fff;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:.15s;white-space:nowrap}
-.qbtn:hover{opacity:.88;transform:translateY(-2px)}
+.qbtn{border:none;border-radius:10px;padding:13px 8px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:.15s;white-space:nowrap}
+.qbtn:hover{filter:brightness(1.12);transform:translateY(-2px)}
 .qb-blue{background:#185FA5}
 .qb-green{background:#28a745}
 .qb-purple{background:#6f42c1}
 .qb-red{background:#dc3545}
 
+/* ── STAT CARDS ── */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;flex-shrink:0}
-.scard{background:#fff;border:0.5px solid #e0e0e0;border-radius:11px;padding:14px 16px;cursor:pointer;transition:.2s}
-.scard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1);border-color:#bbb}
+.scard{background:#fff;border:1px solid #e4e8ef;border-radius:12px;padding:16px;cursor:pointer;transition:all .2s ease;user-select:none}
+.scard:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12);border-color:#c0cadb}
+.scard:active{transform:translateY(-2px)}
 .scard-inner{display:flex;justify-content:space-between;align-items:flex-start}
-.slabel{font-size:12px;color:#666;margin-bottom:4px}
-.snum{font-size:26px;font-weight:600;color:#1a1a2e;line-height:1.1}
-.ssub{font-size:11px;margin-top:3px}
-.ic{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}
+.slabel{font-size:12px;color:#888;margin-bottom:5px;font-weight:500}
+.snum{font-size:28px;font-weight:700;color:#1a1a2e;line-height:1}
+.ssub{font-size:11px;margin-top:4px;font-weight:500}
+.ic{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}
 .ic-blue{background:#185FA5}
 .ic-green{background:#28a745}
 .ic-orange{background:#fd7e14}
 
-.table-card{background:#fff;border:0.5px solid #e0e0e0;border-radius:11px;overflow:hidden;flex:1;display:flex;flex-direction:column;min-height:0}
-.table-hdr{padding:12px 18px;border-bottom:0.5px solid #e0e0e0;flex-shrink:0}
-.table-hdr h5{font-size:14px;font-weight:600;color:#1a1a2e}
-.table-wrap{overflow-y:auto;overflow-x:hidden;flex:1}
-table{width:100%;border-collapse:collapse;font-size:12.5px}
-th{padding:9px 12px;text-align:left;color:#666;font-weight:500;border-bottom:0.5px solid #e0e0e0;white-space:nowrap;background:#f8f9fa;position:sticky;top:0}
-td{padding:9px 12px;color:#333;border-bottom:0.5px solid #f0f0f0;white-space:nowrap}
+/* ── EMERGENCY TABLE ── */
+.table-card{background:#fff;border:1px solid #e4e8ef;border-radius:12px;overflow:hidden;flex:1;display:flex;flex-direction:column;min-height:0}
+.table-hdr{padding:13px 18px;border-bottom:1px solid #e4e8ef;flex-shrink:0;background:#fff}
+.table-hdr h5{font-size:14px;font-weight:700;color:#1a1a2e}
+.table-wrap{overflow-y:auto;flex:1}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{padding:10px 14px;text-align:left;color:#666;font-weight:600;border-bottom:1px solid #e4e8ef;white-space:nowrap;background:#f8f9fc;position:sticky;top:0;z-index:1}
+td{padding:10px 14px;color:#333;border-bottom:1px solid #f2f4f8;white-space:nowrap}
 tr:last-child td{border-bottom:none}
-tbody tr:hover{background:#fafafa}
+tbody tr:hover{background:#f9fbff}
 
-.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:500}
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
 .b-danger{background:#fce8e8;color:#a32d2d}
-.b-warning{background:#fef3e0;color:#854f0b}
-.b-success{background:#eaf3de;color:#3b6d11}
-.b-info{background:#e6f1fb;color:#185FA5}
-.b-primary{background:#ede9fe;color:#4c1d95}
-.b-dark{background:#f0f0f0;color:#444}
+.b-warning{background:#fff4e0;color:#854f0b}
+.b-success{background:#e8f5e9;color:#2e7d32}
+.b-info{background:#e3f2fd;color:#1565c0}
+.b-purple{background:#ede9fe;color:#4c1d95}
+.b-dark{background:#efefef;color:#444}
 
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;align-items:center;justify-content:center}
+/* ── OVERLAY / MODAL ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center}
 .overlay.open{display:flex}
-.mbox{background:#fff;border-radius:12px;width:580px;max-width:90vw;max-height:80vh;overflow-y:auto;border:0.5px solid #ddd}
-.mhdr{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:0.5px solid #eee;position:sticky;top:0;background:#fff;z-index:1}
-.mhdr h5{font-size:14px;font-weight:600;color:#1a1a2e}
-.xbtn{background:none;border:none;cursor:pointer;color:#888;font-size:18px;line-height:1;padding:2px}
-.xbtn:hover{color:#333}
-.mcontent{padding:18px}
-.fg{margin-bottom:13px}
-.fg label{display:block;font-size:12px;color:#666;margin-bottom:5px;font-weight:500}
-.fg input,.fg select{width:100%;padding:8px 11px;border:1px solid #ddd;border-radius:7px;font-size:13px;color:#333;outline:none}
-.fg input:focus,.fg select:focus{border-color:#185FA5}
-.fbtn{width:100%;padding:10px;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;color:#fff;margin-top:4px}
-.fbtn:hover{opacity:.9}
+.mbox{background:#fff;border-radius:14px;width:600px;max-width:92vw;max-height:82vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.mhdr{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:2}
+.mhdr h5{font-size:15px;font-weight:700;color:#1a1a2e}
+.xbtn{background:none;border:none;cursor:pointer;color:#999;font-size:20px;line-height:1;padding:2px;border-radius:6px}
+.xbtn:hover{color:#333;background:#f2f2f2}
+.mcontent{padding:20px}
+
+/* ── FORM INPUTS ── */
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;color:#555;margin-bottom:6px;font-weight:600}
+.fg input,.fg select{width:100%;padding:9px 12px;border:1.5px solid #dde1e8;border-radius:8px;font-size:13px;color:#333;outline:none;transition:.15s;background:#fff}
+.fg input:focus,.fg select:focus{border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.1)}
+.fbtn{width:100%;padding:11px;border:none;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;color:#fff;margin-top:6px;transition:.15s}
+.fbtn:hover{filter:brightness(1.1)}
 .fb-blue{background:#185FA5}
 .fb-green{background:#28a745}
 .fb-red{background:#dc3545}
 .fb-purple{background:#6f42c1}
+
+/* ── EMPTY STATE ── */
+.empty-row td{text-align:center;color:#bbb;padding:24px;font-size:13px}
 </style>
 </head>
 <body>
 
 <div class="wrap">
 
-  <!-- SIDEBAR -->
+  <!-- ════ SIDEBAR ════ -->
   <div class="sidebar">
     <div class="brand">
       <h1><i class="ti ti-ambulance"></i> EmergencyMS</h1>
       <span>Admin Panel</span>
     </div>
-    <a class="nav-link active"><i class="ti ti-layout-dashboard"></i> Dashboard</a>
-    <a class="nav-link"><i class="ti ti-alert-circle"></i> Emergency</a>
-    <a class="nav-link"><i class="ti ti-building-hospital"></i> Hospitals</a>
-    <a class="nav-link"><i class="ti ti-ambulance"></i> Ambulances</a>
-    <a class="nav-link"><i class="ti ti-users"></i> Patients</a>
-    <a class="nav-link logout"><i class="ti ti-logout"></i> Logout</a>
+    <button class="nav-link active"><i class="ti ti-layout-dashboard"></i> Dashboard</button>
+    <button class="nav-link"><i class="ti ti-alert-circle"></i> Emergency</button>
+    <button class="nav-link"><i class="ti ti-building-hospital"></i> Hospitals</button>
+    <button class="nav-link"><i class="ti ti-ambulance"></i> Ambulances</button>
+    <button class="nav-link"><i class="ti ti-users"></i> Patients</button>
+    <button class="nav-link logout"><i class="ti ti-logout"></i> Logout</button>
   </div>
 
-  <!-- MAIN -->
+  <!-- ════ MAIN CONTENT ════ -->
   <div class="main">
 
     <!-- TOPBAR -->
@@ -114,22 +128,23 @@ tbody tr:hover{background:#fafafa}
         <small>Emergency Management System</small>
       </div>
       <div style="display:flex;align-items:center;gap:10px">
-        <span class="bdg-red" id="emergencyBadge">7 Active Emergencies</span>
+        <span class="ebadge" id="emergencyBadge">7 Active Emergencies</span>
         <div class="avatar">AD</div>
       </div>
     </div>
 
     <!-- QUICK ACTION BUTTONS -->
     <div class="actions-row">
-      <button class="qbtn qb-blue"   onclick="om('hosFormModal')"><i class="ti ti-building-hospital"></i> Add Hospital</button>
-      <button class="qbtn qb-green"  onclick="om('ambFormModal')"><i class="ti ti-ambulance"></i> Add Ambulance</button>
-      <button class="qbtn qb-purple" onclick="om('patFormModal')"><i class="ti ti-user-plus"></i> Register Patient</button>
-      <button class="qbtn qb-red"    onclick="om('emgFormModal')"><i class="ti ti-alarm"></i> New Emergency</button>
+      <button class="qbtn qb-blue"   onclick="openModal('hosFormModal')"><i class="ti ti-building-hospital"></i> Add Hospital</button>
+      <button class="qbtn qb-green"  onclick="openModal('ambFormModal')"><i class="ti ti-ambulance"></i> Add Ambulance</button>
+      <button class="qbtn qb-purple" onclick="openModal('patFormModal')"><i class="ti ti-user-plus"></i> Register Patient</button>
+      <button class="qbtn qb-red"    onclick="openModal('emgFormModal')"><i class="ti ti-alarm"></i> New Emergency</button>
     </div>
 
-    <!-- STAT CARDS -->
+    <!-- STAT CARDS — click to view details -->
     <div class="stats-row">
-      <div class="scard" onclick="om('patientsModal')">
+
+      <div class="scard" onclick="openModal('patientsModal')">
         <div class="scard-inner">
           <div>
             <div class="slabel">Total Patients</div>
@@ -139,7 +154,8 @@ tbody tr:hover{background:#fafafa}
           <div class="ic ic-blue"><i class="ti ti-users"></i></div>
         </div>
       </div>
-      <div class="scard" onclick="om('hospitalModal')">
+
+      <div class="scard" onclick="openModal('hospitalModal')">
         <div class="scard-inner">
           <div>
             <div class="slabel">Total Hospitals</div>
@@ -149,7 +165,8 @@ tbody tr:hover{background:#fafafa}
           <div class="ic ic-blue"><i class="ti ti-building-hospital"></i></div>
         </div>
       </div>
-      <div class="scard" onclick="om('bedsModal')">
+
+      <div class="scard" onclick="openModal('bedsModal')">
         <div class="scard-inner">
           <div>
             <div class="slabel">Available Beds</div>
@@ -159,7 +176,8 @@ tbody tr:hover{background:#fafafa}
           <div class="ic ic-green"><i class="ti ti-bed"></i></div>
         </div>
       </div>
-      <div class="scard" onclick="om('ambulanceModal')">
+
+      <div class="scard" onclick="openModal('ambulanceModal')">
         <div class="scard-inner">
           <div>
             <div class="slabel">Ambulances</div>
@@ -169,6 +187,7 @@ tbody tr:hover{background:#fafafa}
           <div class="ic ic-orange"><i class="ti ti-ambulance"></i></div>
         </div>
       </div>
+
     </div>
 
     <!-- EMERGENCY TABLE -->
@@ -186,118 +205,111 @@ tbody tr:hover{background:#fafafa}
               <th>Status</th>
             </tr>
           </thead>
-          <tbody id="emergencyTableBody">
-            <!-- filled by script.js -->
-          </tbody>
+          <tbody id="emergencyTableBody"></tbody>
         </table>
       </div>
     </div>
 
-  </div>
-</div>
+  </div><!-- end .main -->
+</div><!-- end .wrap -->
 
-<!-- ===== VIEW MODALS ===== -->
 
-<!-- PATIENTS VIEW MODAL -->
+<!-- ══════════════════════════════════════
+     VIEW MODALS
+══════════════════════════════════════ -->
+
+<!-- PATIENTS VIEW -->
 <div class="overlay" id="patientsModal">
   <div class="mbox">
     <div class="mhdr">
-      <h5>Registered Patients</h5>
-      <button class="xbtn" onclick="cm('patientsModal')"><i class="ti ti-x"></i></button>
+      <h5><i class="ti ti-users" style="margin-right:6px"></i>Registered Patients</h5>
+      <button class="xbtn" onclick="closeModal('patientsModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
       <table>
         <thead><tr><th>Name</th><th>Age</th><th>Condition</th><th>Action</th></tr></thead>
-        <tbody id="patientsTableBody">
-          <!-- filled by script.js -->
-        </tbody>
+        <tbody id="patientsTableBody"></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- HOSPITALS VIEW MODAL -->
+<!-- HOSPITALS VIEW -->
 <div class="overlay" id="hospitalModal">
   <div class="mbox">
     <div class="mhdr">
-      <h5>Registered Hospitals</h5>
-      <button class="xbtn" onclick="cm('hospitalModal')"><i class="ti ti-x"></i></button>
+      <h5><i class="ti ti-building-hospital" style="margin-right:6px"></i>Registered Hospitals</h5>
+      <button class="xbtn" onclick="closeModal('hospitalModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
       <table>
         <thead><tr><th>Hospital</th><th>Location</th><th>General Beds</th><th>ICU Beds</th><th>Status</th></tr></thead>
-        <tbody id="hospitalTableBody">
-          <!-- filled by script.js -->
-        </tbody>
+        <tbody id="hospitalTableBody"></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- BEDS VIEW MODAL -->
+<!-- BEDS VIEW -->
 <div class="overlay" id="bedsModal">
   <div class="mbox">
     <div class="mhdr">
-      <h5>Bed Availability Details</h5>
-      <button class="xbtn" onclick="cm('bedsModal')"><i class="ti ti-x"></i></button>
+      <h5><i class="ti ti-bed" style="margin-right:6px"></i>Bed Availability Details</h5>
+      <button class="xbtn" onclick="closeModal('bedsModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
       <table>
         <thead><tr><th>Hospital</th><th>General Beds</th><th>ICU Beds</th><th>Total</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>City General</td><td>72</td><td>14</td><td>86</td><td><span class="badge b-success">Available</span></td></tr>
-          <tr><td>Apollo North</td><td>45</td><td>9</td><td>54</td><td><span class="badge b-warning">Limited</span></td></tr>
-          <tr><td>St. Mary's</td><td>12</td><td>2</td><td>14</td><td><span class="badge b-danger">Almost Full</span></td></tr>
-          <tr><td>Sunrise Medical</td><td>61</td><td>18</td><td>79</td><td><span class="badge b-success">Available</span></td></tr>
-        </tbody>
+        <tbody id="bedsTableBody"></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- AMBULANCE VIEW MODAL -->
+<!-- AMBULANCE VIEW -->
 <div class="overlay" id="ambulanceModal">
   <div class="mbox">
     <div class="mhdr">
-      <h5>Ambulance Fleet Status</h5>
-      <button class="xbtn" onclick="cm('ambulanceModal')"><i class="ti ti-x"></i></button>
+      <h5><i class="ti ti-ambulance" style="margin-right:6px"></i>Ambulance Fleet Status</h5>
+      <button class="xbtn" onclick="closeModal('ambulanceModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
       <table>
         <thead><tr><th>Ambulance</th><th>Driver</th><th>Location</th><th>Status</th></tr></thead>
-        <tbody id="ambulanceTableBody">
-          <!-- filled by script.js -->
-        </tbody>
+        <tbody id="ambulanceTableBody"></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- ===== FORM MODALS ===== -->
 
-<!-- ADD HOSPITAL FORM -->
+<!-- ══════════════════════════════════════
+     FORM MODALS
+══════════════════════════════════════ -->
+
+<!-- ADD HOSPITAL -->
 <div class="overlay" id="hosFormModal">
   <div class="mbox">
     <div class="mhdr">
-      <h5>Add Hospital</h5>
-      <button class="xbtn" onclick="cm('hosFormModal')"><i class="ti ti-x"></i></button>
+      <h5><i class="ti ti-building-hospital" style="margin-right:6px"></i>Add Hospital</h5>
+      <button class="xbtn" onclick="closeModal('hosFormModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
       <div class="fg"><label>Hospital Name</label><input type="text" id="hospitalName" placeholder="e.g. Apollo South"></div>
       <div class="fg"><label>Location</label><input type="text" id="hospitalLocation" placeholder="e.g. Koramangala"></div>
-      <div class="fg"><label>General Beds</label><input type="number" id="hospitalGeneral" placeholder="0"></div>
-      <div class="fg"><label>ICU Beds</label><input type="number" id="hospitalICU" placeholder="0"></div>
+      <div class="fg"><label>General Beds</label><input type="number" id="hospitalGeneral" placeholder="0" min="0"></div>
+      <div class="fg"><label>ICU Beds</label><input type="number" id="hospitalICU" placeholder="0" min="0"></div>
       <button class="fbtn fb-blue" onclick="addHospital()">Add Hospital</button>
     </div>
   </div>
 </div>
 
-<!-- ADD AMBULANCE FORM -->
+<!-- ADD AMBULANCE -->
 <div class="overlay" id="ambFormModal">
   <div class="mbox">
     <div class="mhdr">
-      <h5>Add Ambulance</h5>
-      <button class="xbtn" onclick="cm('ambFormModal')"><i class="ti ti-x"></i></button>
+      <h5><i class="ti ti-ambulance" style="margin-right:6px"></i>Add Ambulance</h5>
+      <button class="xbtn" onclick="closeModal('ambFormModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
       <div class="fg"><label>Ambulance Number</label><input type="text" id="ambulanceId" placeholder="e.g. AMB-110"></div>
@@ -308,37 +320,37 @@ tbody tr:hover{background:#fafafa}
   </div>
 </div>
 
-<!-- REGISTER PATIENT FORM -->
+<!-- REGISTER PATIENT -->
 <div class="overlay" id="patFormModal">
   <div class="mbox">
     <div class="mhdr">
-      <h5>Register Patient</h5>
-      <button class="xbtn" onclick="cm('patFormModal')"><i class="ti ti-x"></i></button>
+      <h5><i class="ti ti-user-plus" style="margin-right:6px"></i>Register Patient</h5>
+      <button class="xbtn" onclick="closeModal('patFormModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
       <div class="fg"><label>Patient Name</label><input type="text" id="patFormName" placeholder="Full name"></div>
-      <div class="fg"><label>Age</label><input type="number" id="patFormAge" placeholder="Age"></div>
-      <div class="fg"><label>Emergency Type / Condition</label><input type="text" id="patFormCondition" placeholder="e.g. Cardiac Arrest"></div>
+      <div class="fg"><label>Age</label><input type="number" id="patFormAge" placeholder="Age" min="0"></div>
+      <div class="fg"><label>Condition / Emergency Type</label><input type="text" id="patFormCondition" placeholder="e.g. Cardiac Arrest"></div>
       <button class="fbtn fb-purple" onclick="registerPatient()">Register Patient</button>
     </div>
   </div>
 </div>
 
-<!-- NEW EMERGENCY FORM -->
+<!-- NEW EMERGENCY -->
 <div class="overlay" id="emgFormModal">
   <div class="mbox">
     <div class="mhdr">
-      <h5>New Emergency</h5>
-      <button class="xbtn" onclick="cm('emgFormModal')"><i class="ti ti-x"></i></button>
+      <h5><i class="ti ti-alarm" style="margin-right:6px"></i>New Emergency</h5>
+      <button class="xbtn" onclick="closeModal('emgFormModal')"><i class="ti ti-x"></i></button>
     </div>
     <div class="mcontent">
       <div class="fg"><label>Patient Name</label><input type="text" id="emergencyPatient" placeholder="Full name"></div>
       <div class="fg"><label>Emergency Type</label><input type="text" id="emergencyType" placeholder="e.g. Stroke"></div>
       <div class="fg"><label>Severity</label>
         <select id="emergencySeverity">
-          <option>Critical</option>
-          <option>Urgent</option>
-          <option>Stable</option>
+          <option value="Critical">Critical</option>
+          <option value="Urgent">Urgent</option>
+          <option value="Stable">Stable</option>
         </select>
       </div>
       <button class="fbtn fb-red" onclick="addEmergency()">Create Emergency</button>
@@ -346,8 +358,324 @@ tbody tr:hover{background:#fafafa}
   </div>
 </div>
 
-<!-- script.js MUST be at the bottom, just before </body> -->
-<script src="script.js"></script>
 
+<!-- ══════════════════════════════════════
+     ALL JAVASCRIPT  — inline so path never breaks
+══════════════════════════════════════ -->
+<script>
+
+// ─────────────────────────────────────
+//  DEFAULT / SEED DATA
+// ─────────────────────────────────────
+var DEFAULT_HOSPITALS = [
+  { name:"City General",   location:"MG Road",    general:72, icu:14, status:"Active"      },
+  { name:"Apollo North",   location:"Hebbal",     general:45, icu:9,  status:"Active"      },
+  { name:"St. Mary's",     location:"Jayanagar",  general:12, icu:2,  status:"Almost Full" },
+  { name:"Sunrise Medical",location:"Whitefield", general:61, icu:18, status:"Active"      }
+];
+
+var DEFAULT_AMBULANCES = [
+  { id:"AMB-101", driver:"Ravi Kumar",  location:"MG Road",         status:"Available"  },
+  { id:"AMB-102", driver:"Suresh Patil",location:"Whitefield",      status:"On Duty"    },
+  { id:"AMB-103", driver:"Manoj Singh", location:"Electronic City", status:"Maintenance"},
+  { id:"AMB-104", driver:"Arjun Reddy", location:"Koramangala",     status:"Available"  }
+];
+
+var DEFAULT_EMERGENCIES = [
+  { name:"Ravi Kumar",  type:"Cardiac Arrest",    severity:"Critical", hospital:"City General",   ambulance:"AMB-101", status:"En Route"         },
+  { name:"Priya Singh", type:"ICU Required",      severity:"Critical", hospital:"Apollo North",   ambulance:"AMB-102", status:"Assigned"         },
+  { name:"Mohan Das",   type:"Accident",          severity:"Urgent",   hospital:"Sunrise Medical",ambulance:"AMB-104", status:"Admitted"         },
+  { name:"Ayesha Banu", type:"Respiratory Issue", severity:"Urgent",   hospital:"St. Mary's",     ambulance:"AMB-106", status:"Under Observation"},
+  { name:"Deepak Raj",  type:"Stroke",            severity:"Critical", hospital:"City General",   ambulance:"AMB-109", status:"Waiting ICU"      }
+];
+
+// ─────────────────────────────────────
+//  LOAD FROM LOCALSTORAGE
+// ─────────────────────────────────────
+function load(key) {
+  try { return JSON.parse(localStorage.getItem(key)) || []; }
+  catch(e) { return []; }
+}
+function save(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+// ─────────────────────────────────────
+//  MODAL OPEN / CLOSE
+// ─────────────────────────────────────
+function openModal(id) {
+  // refresh table data every time a view modal opens
+  if (id === 'patientsModal')  renderPatientsTable();
+  if (id === 'hospitalModal')  renderHospitalTable();
+  if (id === 'bedsModal')      renderBedsTable();
+  if (id === 'ambulanceModal') renderAmbulanceTable();
+  document.getElementById(id).classList.add('open');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+// close on backdrop click
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('overlay')) {
+    e.target.classList.remove('open');
+  }
+});
+
+// ─────────────────────────────────────
+//  BADGE HELPERS
+// ─────────────────────────────────────
+function statusBadge(s) {
+  var map = {
+    'Available':'b-success','Active':'b-success','Admitted':'b-success',
+    'On Duty':'b-danger','Almost Full':'b-danger','Critical':'b-danger',
+    'Maintenance':'b-warning','Limited':'b-warning','Urgent':'b-warning','En Route':'b-warning',
+    'Assigned':'b-info','Moderate':'b-info',
+    'Under Observation':'b-purple',
+    'Stable':'b-success'
+  };
+  return map[s] || 'b-dark';
+}
+
+// ─────────────────────────────────────
+//  RENDER — EMERGENCY TABLE (main page)
+// ─────────────────────────────────────
+function renderEmergencyTable() {
+  var tbody = document.getElementById('emergencyTableBody');
+  if (!tbody) return;
+  var saved = load('emergencies');
+  var all   = DEFAULT_EMERGENCIES.concat(saved);
+  tbody.innerHTML = all.map(function(e) {
+    return '<tr>'
+      + '<td>' + e.name + '</td>'
+      + '<td>' + e.type + '</td>'
+      + '<td><span class="badge ' + statusBadge(e.severity) + '">' + e.severity + '</span></td>'
+      + '<td>' + e.hospital + '</td>'
+      + '<td>' + e.ambulance + '</td>'
+      + '<td><span class="badge ' + statusBadge(e.status) + '">' + e.status + '</span></td>'
+      + '</tr>';
+  }).join('');
+  // update badge count
+  var badge = document.getElementById('emergencyBadge');
+  if (badge) badge.textContent = all.length + ' Active Emergencies';
+}
+
+// ─────────────────────────────────────
+//  RENDER — PATIENTS MODAL TABLE
+// ─────────────────────────────────────
+function renderPatientsTable() {
+  var tbody = document.getElementById('patientsTableBody');
+  if (!tbody) return;
+  var pts = load('patients');
+  // update stat card
+  var el = document.getElementById('totalPatients');
+  if (el) el.textContent = pts.length;
+  if (pts.length === 0) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="4">No patients registered yet.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = pts.map(function(p, i) {
+    return '<tr>'
+      + '<td>' + p.name + '</td>'
+      + '<td>' + p.age + '</td>'
+      + '<td>' + p.condition + '</td>'
+      + '<td><button onclick="deletePatient(' + i + ')" style="border:none;background:#fce8e8;color:#a32d2d;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600">Delete</button></td>'
+      + '</tr>';
+  }).join('');
+}
+
+// ─────────────────────────────────────
+//  RENDER — HOSPITALS MODAL TABLE
+// ─────────────────────────────────────
+function renderHospitalTable() {
+  var tbody = document.getElementById('hospitalTableBody');
+  if (!tbody) return;
+  var saved = load('hospitals');
+  var all   = DEFAULT_HOSPITALS.concat(saved);
+  // update stat card
+  var el = document.getElementById('totalHospitals');
+  if (el) el.textContent = all.length;
+  tbody.innerHTML = all.map(function(h) {
+    return '<tr>'
+      + '<td>' + h.name + '</td>'
+      + '<td>' + h.location + '</td>'
+      + '<td>' + h.general + '</td>'
+      + '<td>' + h.icu + '</td>'
+      + '<td><span class="badge ' + statusBadge(h.status) + '">' + h.status + '</span></td>'
+      + '</tr>';
+  }).join('');
+}
+
+// ─────────────────────────────────────
+//  RENDER — BEDS MODAL TABLE
+// ─────────────────────────────────────
+function renderBedsTable() {
+  var tbody = document.getElementById('bedsTableBody');
+  if (!tbody) return;
+  var saved = load('hospitals');
+  var all   = DEFAULT_HOSPITALS.concat(saved);
+  tbody.innerHTML = all.map(function(h) {
+    var total = parseInt(h.general) + parseInt(h.icu);
+    return '<tr>'
+      + '<td>' + h.name + '</td>'
+      + '<td>' + h.general + '</td>'
+      + '<td>' + h.icu + '</td>'
+      + '<td>' + total + '</td>'
+      + '<td><span class="badge ' + statusBadge(h.status) + '">' + h.status + '</span></td>'
+      + '</tr>';
+  }).join('');
+}
+
+// ─────────────────────────────────────
+//  RENDER — AMBULANCE MODAL TABLE
+// ─────────────────────────────────────
+function renderAmbulanceTable() {
+  var tbody = document.getElementById('ambulanceTableBody');
+  if (!tbody) return;
+  var saved = load('ambulances');
+  var all   = DEFAULT_AMBULANCES.concat(saved);
+  // update stat card
+  var el = document.getElementById('totalAmbulances');
+  if (el) el.textContent = all.length;
+  tbody.innerHTML = all.map(function(a) {
+    return '<tr>'
+      + '<td>' + a.id + '</td>'
+      + '<td>' + a.driver + '</td>'
+      + '<td>' + a.location + '</td>'
+      + '<td><span class="badge ' + statusBadge(a.status) + '">' + a.status + '</span></td>'
+      + '</tr>';
+  }).join('');
+}
+
+// ─────────────────────────────────────
+//  ADD HOSPITAL
+// ─────────────────────────────────────
+function addHospital() {
+  var name     = document.getElementById('hospitalName').value.trim();
+  var location = document.getElementById('hospitalLocation').value.trim();
+  var general  = document.getElementById('hospitalGeneral').value.trim();
+  var icu      = document.getElementById('hospitalICU').value.trim();
+  if (!name || !location || !general || !icu) {
+    alert('Please fill in all fields.'); return;
+  }
+  var hospitals = load('hospitals');
+  hospitals.push({ name:name, location:location, general:general, icu:icu, status:'Active' });
+  save('hospitals', hospitals);
+  // clear fields
+  document.getElementById('hospitalName').value     = '';
+  document.getElementById('hospitalLocation').value = '';
+  document.getElementById('hospitalGeneral').value  = '';
+  document.getElementById('hospitalICU').value      = '';
+  closeModal('hosFormModal');
+  // update stat card immediately
+  var saved = load('hospitals');
+  var el = document.getElementById('totalHospitals');
+  if (el) el.textContent = DEFAULT_HOSPITALS.length + saved.length;
+  alert('Hospital added successfully!');
+}
+
+// ─────────────────────────────────────
+//  ADD AMBULANCE
+// ─────────────────────────────────────
+function addAmbulance() {
+  var id       = document.getElementById('ambulanceId').value.trim();
+  var driver   = document.getElementById('driverName').value.trim();
+  var location = document.getElementById('ambulanceLocation').value.trim();
+  if (!id || !driver || !location) {
+    alert('Please fill in all fields.'); return;
+  }
+  var ambulances = load('ambulances');
+  ambulances.push({ id:id, driver:driver, location:location, status:'Available' });
+  save('ambulances', ambulances);
+  // clear fields
+  document.getElementById('ambulanceId').value       = '';
+  document.getElementById('driverName').value        = '';
+  document.getElementById('ambulanceLocation').value = '';
+  closeModal('ambFormModal');
+  // update stat card immediately
+  var saved = load('ambulances');
+  var el = document.getElementById('totalAmbulances');
+  if (el) el.textContent = DEFAULT_AMBULANCES.length + saved.length;
+  alert('Ambulance added successfully!');
+}
+
+// ─────────────────────────────────────
+//  REGISTER PATIENT
+// ─────────────────────────────────────
+function registerPatient() {
+  var name      = document.getElementById('patFormName').value.trim();
+  var age       = document.getElementById('patFormAge').value.trim();
+  var condition = document.getElementById('patFormCondition').value.trim();
+  if (!name || !age || !condition) {
+    alert('Please fill in all fields.'); return;
+  }
+  var patients = load('patients');
+  patients.push({ name:name, age:age, condition:condition });
+  save('patients', patients);
+  // clear fields
+  document.getElementById('patFormName').value      = '';
+  document.getElementById('patFormAge').value       = '';
+  document.getElementById('patFormCondition').value = '';
+  // update count card immediately
+  var el = document.getElementById('totalPatients');
+  if (el) el.textContent = patients.length;
+  closeModal('patFormModal');
+  alert('Patient registered successfully!');
+}
+
+// ─────────────────────────────────────
+//  DELETE PATIENT
+// ─────────────────────────────────────
+function deletePatient(index) {
+  if (!confirm('Delete this patient?')) return;
+  var patients = load('patients');
+  patients.splice(index, 1);
+  save('patients', patients);
+  renderPatientsTable();
+}
+
+// ─────────────────────────────────────
+//  ADD EMERGENCY
+// ─────────────────────────────────────
+function addEmergency() {
+  var name     = document.getElementById('emergencyPatient').value.trim();
+  var type     = document.getElementById('emergencyType').value.trim();
+  var severity = document.getElementById('emergencySeverity').value;
+  if (!name || !type) {
+    alert('Please fill in all fields.'); return;
+  }
+  var emergencies = load('emergencies');
+  emergencies.push({ name:name, type:type, severity:severity, hospital:'Pending', ambulance:'Pending', status:'New' });
+  save('emergencies', emergencies);
+  // clear fields
+  document.getElementById('emergencyPatient').value = '';
+  document.getElementById('emergencyType').value    = '';
+  closeModal('emgFormModal');
+  renderEmergencyTable();
+  alert('Emergency created successfully!');
+}
+
+// ─────────────────────────────────────
+//  INIT — run on page load
+// ─────────────────────────────────────
+renderEmergencyTable();
+
+// set initial stat card counts from localStorage + defaults
+(function() {
+  var pts = load('patients');
+  var el  = document.getElementById('totalPatients');
+  if (el) el.textContent = pts.length;
+
+  var hs  = load('hospitals');
+  var el2 = document.getElementById('totalHospitals');
+  if (el2) el2.textContent = DEFAULT_HOSPITALS.length + hs.length;
+
+  var am  = load('ambulances');
+  var el3 = document.getElementById('totalAmbulances');
+  if (el3) el3.textContent = DEFAULT_AMBULANCES.length + am.length;
+})();
+
+</script>
 </body>
 </html>
