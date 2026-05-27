@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Emergency Requests | EmergencyMS</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Tabler Icons -->
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet">
+
+<!-- Main CSS -->
+<link href="../css/style.css" rel="stylesheet">
+
+<style>
+
+.summary-card{
+cursor:pointer;
+transition:.3s;
+position:relative;
+overflow:visible;
+}
+
+.summary-card:hover{
+transform:translateY(-4px);
+}
+
+.info-popup{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    width:320px;
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    z-index:99999;
+}
+
+.summary-card:hover .info-popup{
+    display:block;
+}
+.summary-card{
+    position:relative;
+    overflow:visible !important;
+}
+
+.row,
+.col-md-3,
+.card,
+.card-body,
+.main-content{
+    overflow:visible !important;
+}
+.info-popup table{
+font-size:12px;
+margin-bottom:0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+<div class="sidebar-brand">
+<h1>
+<i class="ti ti-ambulance"></i>
+EmergencyMS
+</h1>
+<span>Admin Panel</span>
+</div>
+
+<nav class="sidebar-nav">
+
+<a href="dashboard.html" class="nav-link">
+<i class="ti ti-layout-dashboard"></i>
+Dashboard
+</a>
+
+<a href="emergency.html" class="nav-link active">
+<i class="ti ti-alarm"></i>
+Emergency Requests
+</a>
+
+<a href="hospitals.html" class="nav-link">
+<i class="ti ti-building-hospital"></i>
+Hospitals
+</a>
+
+<a href="ambulances.html" class="nav-link">
+<i class="ti ti-ambulance"></i>
+Ambulances
+</a>
+
+<a href="patients.html" class="nav-link">
+<i class="ti ti-users"></i>
+Patients
+</a>
+
+<a href="../index.html"
+class="nav-link"
+style="position:absolute;bottom:20px;width:100%;">
+<i class="ti ti-logout"></i>
+Logout
+</a>
+
+</nav>
+
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+<div>
+<h2>Emergency Requests</h2>
+<small class="text-muted">
+Manage all emergency cases in real time
+</small>
+</div>
+
+<div>
+
+<button
+class="btn btn-danger"
+data-bs-toggle="modal"
+data-bs-target="#emergencyModal">
+
+<i class="ti ti-plus"></i>
+New Emergency
+
+</button>
+
+</div>
+
+</div> 
+
+<!-- SUMMARY CARDS -->
+<div class="row g-3 mb-4">
+
+<!-- Hospitals -->
+<div class="col-md-3">
+
+<div class="card summary-card">
+
+<div class="card-body">
+
+<h6>
+<i class="ti ti-building-hospital text-primary"></i>
+Registered Hospitals
+</h6>
+
+<h2 id="hospitalCount">5</h2>
+
+<small class="text-muted">
+Click / Hover for details
+</small>
+
+<div class="info-popup">
+
+<h6>Hospital List</h6>
+
+<table class="table table-sm">
+
+<tr>
+<th>Hospital</th>
+<th>ICU</th>
+<th>Emergency</th>
+</tr>
+
+<tr>
+<td>City General</td>
+<td>14</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>Apollo North</td>
+<td>9</td>
+<td>12</td>
+</tr>
+
+<tr>
+<td>Sunrise Medical</td>
+<td>18</td>
+<td>9</td>
+</tr>
+
+<tr>
+<td>St Mary's</td>
+<td>2</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>Rainbow</td>
+<td>6</td>
+<td>8</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Beds -->
+<div class="col-md-3">
+
+<div class="card summary-card">
+
+<div class="card-body">
+
+<h6>
+<i class="ti ti-bed text-success"></i>
+Available Beds
+</h6>
+
+<h2 id="bedCount">248</h2>
+
+<small class="text-muted">
+Click / Hover for details
+</small>
+
+<div class="info-popup">
+
+<h6>Bed Availability</h6>
+
+<table class="table table-sm">
+
+<tr>
+<th>Hospital</th>
+<th>Beds</th>
+</tr>
+
+<tr>
+<td>City General</td>
+<td>72</td>
+</tr>
+
+<tr>
+<td>Apollo North</td>
+<td>45</td>
+</tr>
+
+<tr>
+<td>Sunrise Medical</td>
+<td>61</td>
+</tr>
+
+<tr>
+<td>St Mary's</td>
+<td>12</td>
+</tr>
+
+<tr>
+<td>Rainbow</td>
+<td>58</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Emergencies -->
+<div class="col-md-3">
+
+<div class="card summary-card">
+
+<div class="card-body">
+
+<h6>
+<i class="ti ti-alarm text-danger"></i>
+Active Emergencies
+</h6>
+
+<h2 id="emergencyCount">7</h2>
+
+<small class="text-muted">
+Click / Hover for details
+</small>
+
+<div class="info-popup">
+
+<h6>Current Cases</h6>
+
+<table class="table table-sm">
+
+<tr>
+<th>Patient</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>Ravi Kumar</td>
+<td>Critical</td>
+</tr>
+
+<tr>
+<td>Priya Singh</td>
+<td>Critical</td>
+</tr>
+
+<tr>
+<td>Mohan Das</td>
+<td>Urgent</td>
+</tr>
+
+<tr>
+<td>Ayesha</td>
+<td>Stable</td>
+</tr>
+
+<tr>
+<td>Deepak</td>
+<td>Pending</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Ambulances -->
+<div class="col-md-3">
+
+<div class="card summary-card">
+
+<div class="card-body">
+
+<h6>
+<i class="ti ti-ambulance text-warning"></i>
+Available Ambulances
+</h6>
+
+<h2 id="ambulanceCount">8</h2>
+
+<small class="text-muted">
+Click / Hover for details
+</small>
+
+<div class="info-popup">
+
+<h6>Ambulance Status</h6>
+
+<table class="table table-sm">
+
+<tr>
+<th>ID</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>AMB-001</td>
+<td>Available</td>
+</tr>
+
+<tr>
+<td>AMB-002</td>
+<td>Available</td>
+</tr>
+
+<tr>
+<td>AMB-003</td>
+<td>Booked</td>
+</tr>
+
+<tr>
+<td>AMB-004</td>
+<td>Available</td>
+</tr>
+
+<tr>
+<td>AMB-005</td>
+<td>Available</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ACTIVE EMERGENCIES TABLE -->
+<div class="card">
+
+<div class="card-header bg-white">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<h5 class="mb-0">
+Emergency Requests
+</h5>
+
+<input
+type="text"
+id="searchPatient"
+class="form-control"
+placeholder="Search Patient..."
+style="max-width:250px;"
+onkeyup="searchPatient()">
+
+</div>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle">
+
+<thead class="table-light">
+
+<tr>
+
+<th>Patient</th>
+<th>Emergency</th>
+<th>Severity</th>
+<th>Hospital</th>
+<th>Ambulance</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="emergencyTable">
+
+<tr>
+
+<td>Ravi Kumar</td>
+<td>Cardiac Arrest</td>
+<td>
+<span class="badge bg-danger">
+Critical
+</span>
+</td>
+<td>City General</td>
+<td>AMB-001</td>
+<td>
+<span class="badge bg-primary">
+En Route
+</span>
+</td>
+
+</tr>
+
+<tr>
+
+<td>Priya Singh</td>
+<td>Stroke</td>
+<td>
+<span class="badge bg-danger">
+Critical
+</span>
+</td>
+<td>Apollo North</td>
+<td>AMB-003</td>
+<td>
+<span class="badge bg-primary">
+En Route
+</span>
+</td>
+
+</tr>
+        <tr>
+          <td>Mohan Das</td>
+          <td>Accident / Trauma</td>
+          <td>
+            <span class="badge bg-warning text-dark">
+              Urgent
+            </span>
+          </td>
+          <td>Sunrise Medical</td>
+          <td>AMB-004</td>
+          <td>
+            <span class="badge bg-warning text-dark">
+              Dispatched
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Ayesha Banu</td>
+          <td>Observation</td>
+          <td>
+            <span class="badge bg-success">
+              Stable
+            </span>
+          </td>
+          <td>St. Mary's</td>
+          <td>AMB-006</td>
+          <td>
+            <span class="badge bg-success">
+              Admitted
+            </span>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- =========================
+     NEW EMERGENCY MODAL
+========================= -->
+
+<div class="modal fade"
+     id="emergencyModal"
+     tabindex="-1">
+
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h5 class="modal-title">
+          <i class="ti ti-alarm text-danger"></i>
+          New Emergency Request
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal">
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <label class="form-label">
+              Patient Name
+            </label>
+
+            <input
+              type="text"
+              id="patientName"
+              class="form-control">
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">
+              Age
+            </label>
+
+            <input
+              type="number"
+              class="form-control">
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">
+              Gender
+            </label>
+
+            <select class="form-select">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">
+              Emergency Type
+            </label>
+
+            <select
+              id="emergencyType"
+              class="form-select">
+
+              <option>Cardiac Arrest</option>
+              <option>Stroke</option>
+              <option>Accident / Trauma</option>
+              <option>Fracture</option>
+              <option>Respiratory Failure</option>
+
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">
+              Severity
+            </label>
+
+            <select
+              id="severity"
+              class="form-select">
+
+              <option>Critical</option>
+              <option>Urgent</option>
+              <option>Stable</option>
+
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">
+              Contact Number
+            </label>
+
+            <input
+              type="text"
+              class="form-control">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">
+              ICU Required
+            </label>
+
+            <select class="form-select">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+
+            <label class="form-label">
+              Pickup Address
+            </label>
+
+            <textarea
+              id="pickupAddress"
+              class="form-control"
+              rows="2"
+              placeholder="Enter pickup location"></textarea>
+
+          </div>
+
+          <div class="col-12">
+
+            <label class="form-label">
+              Additional Notes
+            </label>
+
+            <textarea
+              class="form-control"
+              rows="3"></textarea>
+
+          </div>
+
+          <!-- Assignment Result -->
+          <div class="col-12">
+
+            <div
+              id="assignmentBox"
+              class="alert alert-info d-none">
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+
+      <button
+      class="btn btn-primary"
+      onclick="findNearestAmbulance()">
+
+      Check Availability
+
+      </button>      
+
+        
+
+        <button
+          class="btn btn-danger"
+          onclick="submitEmergency()">
+
+          Submit Request
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+<!-- End Main Content -->
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+/* ===========================
+   AMBULANCE DATA
+=========================== */
+
+let ambulances =
+JSON.parse(localStorage.getItem("ambulances")) || [
+
+{
+ id:"AMB-001",
+ driver:"Ravi Kumar",
+ location:"MG Road",
+ eta:"5 mins",
+ status:"Available"
+},
+
+{
+ id:"AMB-002",
+ driver:"Suresh Patil",
+ location:"Whitefield",
+ eta:"7 mins",
+ status:"Available"
+},
+
+{
+ id:"AMB-003",
+ driver:"Arjun Reddy",
+ location:"Koramangala",
+ eta:"--",
+ status:"Booked"
+},
+
+{
+ id:"AMB-004",
+ driver:"Manoj Singh",
+ location:"Indiranagar",
+ eta:"6 mins",
+ status:"Available"
+}
+
+];
+
+let assignedAmbulance = null;
+
+/* ===========================
+   FIND NEAREST AVAILABLE
+=========================== */
+
+function findNearestAmbulance(){
+
+ const address =
+ document.getElementById("pickupAddress").value;
+
+ if(address.trim()===""){
+   alert("Enter Pickup Address First");
+   return;
+ }
+
+ assignedAmbulance =
+ ambulances.find(
+ a => a.status === "Available"
+ );
+
+ if(!assignedAmbulance){
+
+   alert("No Ambulance Available");
+   return;
+ }
+
+ document
+.getElementById("assignmentBox")
+.classList.remove("d-none");
+
+document
+.getElementById("assignmentBox")
+.innerHTML =
+"Ambulance Available. Click Submit Request.";
+ 
+
+}
+
+/* ===========================
+   SUBMIT REQUEST
+=========================== */
+
+function submitEmergency(){
+
+ const patient =
+document.getElementById("patientName").value;
+
+const type =
+document.getElementById("emergencyType").value;
+
+// SAVE PATIENT TO LOCAL STORAGE
+
+let patients =
+JSON.parse(localStorage.getItem("patients")) || [];
+
+patients.push({
+
+    name: patient,
+    condition: type,
+    hospital: "City General"
+
+});
+
+localStorage.setItem(
+    "patients",
+    JSON.stringify(patients)
+);
+
+const severity =
+document.getElementById("severity").value;
+
+ if(patient===""){
+   alert("Enter Patient Name");
+   return;
+ }
+
+ if(!assignedAmbulance){
+   alert("Find Ambulance First");
+   return;
+ }
+
+ assignedAmbulance.status = "Booked";
+ localStorage.setItem(
+    "ambulances",
+    JSON.stringify(ambulances)
+ );
+ document
+ .getElementById("ambulanceCount")
+ .innerText =
+ ambulances.filter(
+ a => a.status==="Available"
+ ).length;
+
+ const table =
+ document.getElementById("emergencyTable");
+
+ table.innerHTML +=
+
+ `
+ <tr>
+
+ <td>${patient}</td>
+
+ <td>${type}</td>
+
+ <td>
+ <span class="badge bg-danger">
+ ${severity}
+ </span>
+ </td>
+
+ <td>Nearest Hospital</td>
+
+ <td>
+ ${assignedAmbulance.id}
+ </td>
+
+ <td>
+ <span class="badge bg-primary">
+ Assigned
+ </span>
+ </td>
+
+ </tr>
+ `;
+
+ document
+ .getElementById("emergencyCount")
+ .innerText =
+ parseInt(
+ document.getElementById("emergencyCount")
+ .innerText
+ ) + 1;
+
+ alert(
+ "Emergency Registered Successfully!\n\n" +
+ "Assigned Ambulance : " +
+ assignedAmbulance.id
+ );
+
+ const modal =
+ bootstrap.Modal.getInstance(
+ document.getElementById("emergencyModal")
+ );
+
+ modal.hide();
+
+}
+
+/* ===========================
+   OPTIONAL CLICK TOGGLE
+=========================== */
+
+function searchPatient() {
+
+    let input =
+    document.getElementById("searchPatient")
+    .value.toLowerCase();
+
+    let rows =
+    document.querySelectorAll("#emergencyTable tr");
+
+    rows.forEach(row => {
+
+        let patient =
+        row.cells[0].innerText.toLowerCase();
+
+        if(patient.includes(input)) {
+            row.style.display = "";
+        }
+        else {
+            row.style.display = "none";
+        }
+
+    });
+
+}
+</script>
+<script src="../JS/script.js"></script>
+</body>

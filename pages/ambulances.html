@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulances | EmergencyMS</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tabler Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet">
+
+    <!-- Global CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="sidebar-brand">
+        <h1>
+            <i class="ti ti-ambulance"></i>
+            EmergencyMS
+        </h1>
+        <span>Control Center</span>
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a href="dashboard.html" class="nav-link">
+            <i class="ti ti-layout-dashboard"></i>
+            Dashboard
+        </a>
+
+        <a href="emergency.html" class="nav-link">
+            <i class="ti ti-alarm"></i>
+            Emergency Requests
+        </a>
+
+        <a href="hospitals.html" class="nav-link">
+            <i class="ti ti-building-hospital"></i>
+            Hospitals
+        </a>
+
+        <a href="ambulances.html" class="nav-link active">
+            <i class="ti ti-ambulance"></i>
+            Ambulances
+        </a>
+
+        <a href="patients.html" class="nav-link">
+            <i class="ti ti-users"></i>
+            Patients
+        </a>
+
+        <a href="../index.html"
+           class="nav-link"
+           style="position:absolute;bottom:20px;width:calc(100% - 30px);">
+            <i class="ti ti-logout"></i>
+            Logout
+        </a>
+
+    </nav>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <h2>Emergency Fleet Management</h2>
+
+        <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#ambulanceModal">
+
+            <i class="ti ti-plus"></i>
+            Add Ambulance
+
+        </button>
+
+    </div>
+
+    <!-- SUMMARY CARDS -->
+
+    <div class="row g-3 mb-4">
+
+        <!-- Available -->
+
+        <div class="col-md-3">
+
+            <div class="stat-card"
+                 style="cursor:pointer;"
+                 data-bs-toggle="modal"
+                 data-bs-target="#availableModal">
+
+                <div class="label">
+                    <i class="ti ti-ambulance text-success"></i>
+                    Available
+                </div>
+
+                <div class="value">13</div>
+
+                <div class="sub text-success">
+                    Ready for Dispatch
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- On Duty -->
+
+        <div class="col-md-3">
+
+            <div class="stat-card"
+                 style="cursor:pointer;"
+                 data-bs-toggle="modal"
+                 data-bs-target="#dutyModal">
+
+                <div class="label">
+                    <i class="ti ti-activity-heartbeat text-danger"></i>
+                    On Duty
+                </div>
+
+                <div class="value">5</div>
+
+                <div class="sub text-danger">
+                    Active Emergencies
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Maintenance -->
+
+        <div class="col-md-3">
+
+            <div class="stat-card"
+                 style="cursor:pointer;"
+                 data-bs-toggle="modal"
+                 data-bs-target="#maintenanceModal">
+
+                <div class="label">
+                    <i class="ti ti-tool text-warning"></i>
+                    Maintenance
+                </div>
+
+                <div class="value">2</div>
+
+                <div class="sub text-warning">
+                    Under Service
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Locations -->
+
+        <div class="col-md-3">
+
+            <div class="stat-card"
+                 style="cursor:pointer;"
+                 data-bs-toggle="modal"
+                 data-bs-target="#locationModal">
+
+                <div class="label">
+                    <i class="ti ti-map-pin text-primary"></i>
+                    Active Stations
+                </div>
+
+                <div class="value">6</div>
+
+                <div class="sub text-primary">
+                    View Locations
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AMBULANCE LIST -->
+
+    <div class="row g-4">
+
+        <!-- AMB-101 -->
+
+        <div class="col-lg-6">
+
+            <div class="card">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <div>
+                        <h5>AMB-101</h5>
+                        <small>Driver: Ravi Kumar</small>
+                    </div>
+
+                    <span class="pill pill-green">
+                        Available
+                    </span>
+
+                </div>
+
+                <p>
+                    <i class="ti ti-map-pin"></i>
+                    MG Road, Bangalore
+                </p>
+
+                <p>
+                    <i class="ti ti-phone"></i>
+                    +91 9876543210
+                </p>
+
+                <p>
+                    <i class="ti ti-clock"></i>
+                    Last Updated: 5 mins ago
+                </p>
+
+                <button class="btn btn-outline-primary btn-sm">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- AMB-102 -->
+
+        <div class="col-lg-6">
+
+            <div class="card">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <div>
+                        <h5>AMB-102</h5>
+                        <small>Driver: Suresh Patil</small>
+                    </div>
+
+                    <span class="pill pill-red">
+                        On Duty
+                    </span>
+
+                </div>
+
+                <p>
+                    <i class="ti ti-map-pin"></i>
+                    Whitefield, Bangalore
+                </p>
+
+                <p>
+                    <i class="ti ti-phone"></i>
+                    +91 9123456780
+                </p>
+
+                <p>
+                    <i class="ti ti-activity-heartbeat"></i>
+                    Assigned To Emergency Case
+                </p>
+
+                <button class="btn btn-outline-primary btn-sm">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- AMB-103 -->
+
+        <div class="col-lg-6">
+
+            <div class="card">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <div>
+                        <h5>AMB-103</h5>
+                        <small>Driver: Manoj Singh</small>
+                    </div>
+
+                    <span class="pill pill-amber">
+                        Maintenance
+                    </span>
+
+                </div>
+
+                <p>
+                    <i class="ti ti-map-pin"></i>
+                    Electronic City
+                </p>
+
+                <p>
+                    <i class="ti ti-tool"></i>
+                    Engine Servicing
+                </p>
+
+                <p>
+                    <i class="ti ti-clock"></i>
+                    Available In 2 Hours
+                </p>
+
+                <button class="btn btn-outline-primary btn-sm">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- AMB-104 -->
+
+        <div class="col-lg-6">
+
+            <div class="card">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <div>
+                        <h5>AMB-104</h5>
+                        <small>Driver: Arjun Reddy</small>
+                    </div>
+
+                    <span class="pill pill-green">
+                        Available
+                    </span>
+
+                </div>
+
+                <p>
+                    <i class="ti ti-map-pin"></i>
+                    Koramangala
+                </p>
+
+                <p>
+                    <i class="ti ti-phone"></i>
+                    +91 9988776655
+                </p>
+
+                <p>
+                    <i class="ti ti-clock"></i>
+                    Ready For Dispatch
+                </p>
+
+                <button class="btn btn-outline-primary btn-sm">
+                    View Details
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- AVAILABLE AMBULANCES MODAL -->
+
+<div class="modal fade" id="availableModal" tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header modal-header-custom">
+
+                <h5 class="modal-title">
+                    Available Ambulances
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="list-group">
+
+                    <div class="list-group-item">
+                        <strong>AMB-101</strong><br>
+                        Driver: Ravi Kumar<br>
+                        Location: MG Road<br>
+                        Status: Ready For Dispatch
+                    </div>
+
+                    <div class="list-group-item">
+                        <strong>AMB-104</strong><br>
+                        Driver: Arjun Reddy<br>
+                        Location: Koramangala<br>
+                        Status: Ready For Dispatch
+                    </div>
+
+                    <div class="list-group-item">
+                        <strong>AMB-106</strong><br>
+                        Driver: Kiran Patel<br>
+                        Location: Whitefield<br>
+                        Status: Ready For Dispatch
+                    </div>
+
+                    <div class="list-group-item">
+                        <strong>AMB-108</strong><br>
+                        Driver: Akash Nair<br>
+                        Location: Indiranagar<br>
+                        Status: Ready For Dispatch
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ACTIVE EMERGENCIES MODAL -->
+
+<div class="modal fade" id="dutyModal" tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header modal-header-custom">
+
+                <h5 class="modal-title">
+                    Ambulances On Duty
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <table class="table table-hover">
+
+                    <thead>
+
+                        <tr>
+                            <th>Ambulance</th>
+                            <th>Pickup Location</th>
+                            <th>Destination</th>
+                            <th>Dispatch Time</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>AMB-102</td>
+                            <td>Whitefield</td>
+                            <td>City General Hospital</td>
+                            <td>8:15 PM</td>
+                        </tr>
+
+                        <tr>
+                            <td>AMB-105</td>
+                            <td>Indiranagar</td>
+                            <td>Apollo Hospital</td>
+                            <td>8:10 PM</td>
+                        </tr>
+
+                        <tr>
+                            <td>AMB-109</td>
+                            <td>MG Road</td>
+                            <td>Sunrise Medical</td>
+                            <td>8:05 PM</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MAINTENANCE MODAL -->
+
+<div class="modal fade" id="maintenanceModal" tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header modal-header-custom">
+
+                <h5 class="modal-title">
+                    Under Service
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="mb-3">
+
+                    <strong>AMB-103</strong><br>
+
+                    Issue:
+                    Engine Servicing<br>
+
+                    Expected Completion:
+                    2 Hours
+
+                </div>
+
+                <hr>
+
+                <div>
+
+                    <strong>AMB-111</strong><br>
+
+                    Issue:
+                    Brake Inspection<br>
+
+                    Expected Completion:
+                    Tomorrow 10:00 AM
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ACTIVE STATIONS MODAL -->
+
+<div class="modal fade" id="locationModal" tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header modal-header-custom">
+
+                <h5 class="modal-title">
+                    Active Ambulance Stations
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <ul class="list-group">
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        MG Road Station
+                        <span>2 Ambulances</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        Koramangala Station
+                        <span>3 Ambulances</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        Whitefield Station
+                        <span>2 Ambulances</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        Electronic City Station
+                        <span>1 Ambulance</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        Indiranagar Station
+                        <span>2 Ambulances</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        Jayanagar Station
+                        <span>1 Ambulance</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../JS/script.js"></script>
+<div class="modal fade" id="ambulanceModal">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+<div class="modal-header">
+<h5>Add Ambulance</h5>
+<button class="btn-close" data-bs-dismiss="modal"></button>
+</div>
+
+<div class="modal-body">
+
+<input
+type="text"
+id="ambulanceId"
+class="form-control mb-2"
+placeholder="Ambulance ID">
+
+<input
+type="text"
+id="driverName"
+class="form-control mb-2"
+placeholder="Driver Name">
+
+<input
+type="text"
+id="ambulanceLocation"
+class="form-control"
+placeholder="Location">
+
+</div>
+
+<div class="modal-footer">
+
+<button
+class="btn btn-primary"
+onclick="addAmbulance()">
+
+Save
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

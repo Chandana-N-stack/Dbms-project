@@ -1,0 +1,648 @@
+/* ========================================
+   EmergencyMS Global Styles
+======================================== */
+
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1e40af;
+
+    --success:#059669;
+    --danger:#b91c1c;
+    --warning:#d97706;
+    --info:#0284c7;
+
+    --sidebar:#111827;
+    --sidebar-hover:#1f2937;
+
+    --body-bg:#f8fafc;
+    --card-bg:#ffffff;
+
+    --border:#e2e8f0;
+
+    --text:#0f172a;
+    --text-light:#64748b;
+
+    --shadow-sm:0 2px 8px rgba(15,23,42,.06);
+    --shadow-md:0 4px 16px rgba(15,23,42,.08);
+    --shadow-lg:0 12px 24px rgba(15,23,42,.12);
+}
+
+/* ========================================
+   Base
+======================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--body-bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    line-height:1.5;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* ========================================
+   Sidebar
+======================================== */
+
+.sidebar{
+    width:280px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:var(--sidebar);
+
+    display:flex;
+    flex-direction:column;
+
+    box-shadow:4px 0 20px rgba(0,0,0,.08);
+
+    z-index:1000;
+}
+
+.sidebar-brand{
+    padding:24px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.summary-card{
+    position:relative;
+    overflow:visible !important;
+    z-index:1;
+}
+
+.summary-card:hover{
+    z-index:9999;
+}
+
+.info-popup{
+    display:none;
+    position:absolute;
+    top:105%;
+    left:0;
+    width:320px;
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    z-index:10000;
+}
+
+.summary-card:hover .info-popup{
+    display:block;
+}
+.main-content,
+.card,
+.card-body{
+    overflow:visible !important;
+}
+.sidebar-brand h1{
+    color:white;
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.sidebar-brand span{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+.sidebar-nav{
+    padding:15px;
+    flex:1;
+}
+
+.sidebar-nav .nav-link{
+    color:#cbd5e1;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px 15px;
+    margin-bottom:8px;
+
+    border-radius:12px;
+
+    transition:all .25s ease;
+}
+
+.sidebar-nav .nav-link:hover{
+    background:var(--sidebar-hover);
+    color:white;
+}
+
+.sidebar-nav .nav-link.active{
+    background:var(--primary);
+    color:white;
+    box-shadow:0 4px 12px rgba(37,99,235,.25);
+}
+
+.sidebar-nav .nav-link i{
+    font-size:18px;
+}
+
+/* ========================================
+   Main Content
+======================================== */
+
+.main-content{
+    margin-left:280px;
+    padding:32px;
+    min-height:100vh;
+}
+
+/* ========================================
+   Topbar
+======================================== */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:white;
+
+    padding:22px 28px;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-sm);
+
+    margin-bottom:30px;
+}
+
+.topbar h2{
+    font-size:28px;
+    font-weight:700;
+    margin:0;
+}
+
+/* ========================================
+   Cards
+======================================== */
+
+.card{
+    border:none;
+    border-radius:18px;
+    background:var(--card-bg);
+    padding:20px;
+    box-shadow:var(--shadow-md);
+}
+
+.card-title{
+    font-size:15px;
+    font-weight:600;
+    color:var(--text);
+    margin-bottom:18px;
+}
+
+/* ========================================
+   Dashboard Stat Cards
+======================================== */
+
+.stat-card{
+    position:relative;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    box-shadow:var(--shadow-md);
+
+    transition:all .3s ease;
+
+    cursor:pointer;
+}
+
+.stat-card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg);
+}
+
+.stat-card .label{
+    font-size:14px;
+    color:var(--text-light);
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    margin-bottom:12px;
+}
+
+.stat-card .value{
+    font-size:34px;
+    font-weight:700;
+    color:var(--text);
+}
+
+.stat-card .sub{
+    margin-top:10px;
+    font-size:13px;
+    color:var(--text-light);
+}
+
+/* ========================================
+   Hover Panels
+======================================== */
+
+.hover-panel{
+    display:none;
+
+    position:absolute;
+
+    top:105%;
+    left:0;
+
+    width:360px;
+    max-height:450px;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    box-shadow:var(--shadow-lg);
+
+    border:1px solid var(--border);
+
+    z-index:9999;
+}
+
+.hover-panel.active{
+    display:block;
+}
+
+.stat-card:hover .hover-panel{
+    display:block;
+}
+
+/* ========================================
+   Status Pills
+======================================== */
+
+.pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    border-radius:999px;
+
+    padding:6px 12px;
+
+    font-size:12px;
+    font-weight:600;
+}
+
+.pill-red{
+    background:#fef2f2;
+    color:#b91c1c;
+}
+
+.pill-green{
+    background:#ecfdf5;
+    color:#047857;
+}
+
+.pill-amber{
+    background:#fffbeb;
+    color:#b45309;
+}
+
+.pill-blue{
+    background:#eff6ff;
+    color:#1d4ed8;
+}
+
+.pill-gray{
+    background:#f8fafc;
+    color:#475569;
+}
+
+/* ========================================
+   Availability Bars
+======================================== */
+
+.bed-bar-wrap{
+    height:10px;
+    background:#edf2f7;
+    border-radius:999px;
+    overflow:hidden;
+    margin-top:6px;
+}
+
+.bed-bar{
+    height:100%;
+}
+
+.bar-green{
+    background:var(--success);
+}
+
+.bar-amber{
+    background:var(--warning);
+}
+
+.bar-red{
+    background:var(--danger);
+}
+
+/* ========================================
+   Tables
+======================================== */
+
+.ems-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.ems-table th{
+    background:#f1f5f9;
+
+    padding:15px;
+
+    text-align:left;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:#64748b;
+}
+
+.ems-table td{
+    padding:15px;
+    border-bottom:1px solid #eef2f7;
+}
+
+.ems-table tr:hover{
+    background:#f8fafc;
+}
+
+/* ========================================
+   Bootstrap Table Support
+======================================== */
+
+.table{
+    vertical-align:middle;
+}
+
+.table thead{
+    background:#f1f5f9;
+}
+
+.table-hover tbody tr:hover{
+    background:#f8fafc;
+}
+
+/* ========================================
+   Forms
+======================================== */
+
+.form-control,
+.form-select{
+    min-height:46px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+
+/* ========================================
+   Buttons
+======================================== */
+
+.btn-primary-custom{
+    background:var(--primary);
+    color:white;
+
+    border:none;
+
+    padding:11px 20px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.btn-primary-custom:hover{
+    background:var(--primary-dark);
+}
+
+.btn-danger-custom{
+    background:var(--danger);
+    color:white;
+
+    border:none;
+
+    padding:11px 20px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+}
+
+.btn-danger-custom:hover{
+    opacity:.95;
+}
+
+.btn-secondary-custom{
+    background:white;
+
+    border:1px solid var(--border);
+
+    padding:11px 20px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+}
+
+/* ========================================
+   Avatar
+======================================== */
+
+.avatar{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:600;
+}
+
+/* ========================================
+   Modal Overlay
+======================================== */
+
+.modal-overlay{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.45);
+
+    z-index:9999;
+}
+
+.modal-overlay.active{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-pip{
+    width:650px;
+    max-width:95%;
+
+    background:white;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:0 25px 60px rgba(15,23,42,.20);
+
+    animation:popup .25s ease;
+}
+
+@keyframes popup{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.modal-pip-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:22px 28px;
+
+    border-bottom:1px solid var(--border);
+}
+
+.modal-pip-body{
+    padding:28px;
+}
+
+.modal-close{
+    border:none;
+    background:none;
+    font-size:24px;
+    cursor:pointer;
+}
+
+/* ========================================
+   Dashboard Charts
+======================================== */
+
+.chart-card{
+    min-height:350px;
+}
+
+/* ========================================
+   Scrollbar
+======================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f5f9;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#94a3b8;
+}
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media(max-width:991px){
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+    .main-content{
+        margin-left:0;
+    }
+
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .hover-panel{
+        width:100%;
+        position:relative;
+        top:15px;
+    }
+}
+
+@media(max-width:768px){
+
+    .main-content{
+        padding:15px;
+    }
+
+    .stat-card .value{
+        font-size:28px;
+    }
+
+    .topbar h2{
+        font-size:24px;
+    }
+}

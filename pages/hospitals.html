@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hospitals | EmergencyMS</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tabler Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet">
+
+    <!-- Global CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <h1>
+                <i class="ti ti-ambulance"></i>
+                EmergencyMS
+            </h1>
+
+            <span>Control Center</span>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="nav-link">
+                <i class="ti ti-layout-dashboard"></i>
+                Dashboard
+            </a>
+
+            <a href="emergency.html" class="nav-link">
+                <i class="ti ti-alarm"></i>
+                Emergency Requests
+            </a>
+
+            <a href="hospitals.html" class="nav-link active">
+                <i class="ti ti-building-hospital"></i>
+                Hospitals
+            </a>
+
+            <a href="ambulances.html" class="nav-link">
+                <i class="ti ti-ambulance"></i>
+                Ambulances
+            </a>
+
+            <a href="patients.html" class="nav-link">
+                <i class="ti ti-users"></i>
+                Patients
+            </a>
+
+            <a href="../index.html"
+               class="nav-link"
+               style="position:absolute;bottom:20px;width:calc(100% - 30px);">
+
+                <i class="ti ti-logout"></i>
+                Logout
+
+            </a>
+
+        </nav>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main-content">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <h2>Hospital Management</h2>
+
+            <button
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#addHospitalModal">
+
+                <i class="ti ti-plus"></i>
+                Add Hospital
+
+            </button>
+
+        </div>
+
+        <!-- SUMMARY CARDS -->
+
+        <div class="row g-3 mb-4">
+
+            <!-- REGISTERED HOSPITALS -->
+
+            <div class="col-md-3">
+
+                <div class="stat-card"
+                     style="cursor:pointer;"
+                     data-bs-toggle="modal"
+                     data-bs-target="#registeredHospitalsModal">
+
+                    <div class="label">
+                        <i class="ti ti-building-hospital text-primary"></i>
+                        Registered Hospitals
+                    </div>
+
+                    <div class="value">4</div>
+
+                    <div class="sub">
+                        Click To View
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- GENERAL BEDS -->
+
+            <div class="col-md-3">
+
+                <div class="stat-card"
+                     style="cursor:pointer;"
+                     data-bs-toggle="modal"
+                     data-bs-target="#generalBedsModal">
+
+                    <div class="label">
+                        <i class="ti ti-bed text-success"></i>
+                        General Beds
+                    </div>
+
+                    <div class="value">186</div>
+
+                    <div class="sub">
+                        Available Across Hospitals
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ICU -->
+
+            <div class="col-md-3">
+
+                <div class="stat-card"
+                     style="cursor:pointer;"
+                     data-bs-toggle="modal"
+                     data-bs-target="#icuBedsModal">
+
+                    <div class="label">
+                        <i class="ti ti-heart-rate-monitor text-danger"></i>
+                        ICU Beds
+                    </div>
+
+                    <div class="value">43</div>
+
+                    <div class="sub">
+                        Available Across Hospitals
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- EMERGENCY -->
+
+            <div class="col-md-3">
+
+                <div class="stat-card"
+                     style="cursor:pointer;"
+                     data-bs-toggle="modal"
+                     data-bs-target="#emergencyBedsModal">
+
+                    <div class="label">
+                        <i class="ti ti-first-aid-kit text-warning"></i>
+                        Emergency Beds
+                    </div>
+
+                    <div class="value">28</div>
+
+                    <div class="sub">
+                        Available Across Hospitals
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SEARCH -->
+
+        <div class="card mb-4">
+
+            <div class="input-group">
+
+                <span class="input-group-text">
+                    <i class="ti ti-search"></i>
+                </span>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="hospitalSearch"
+                    placeholder="Search Hospitals...">
+
+            </div>
+
+        </div>
+
+        <!-- HOSPITALS -->
+
+        <div class="row g-4">
+
+            <!-- CITY GENERAL -->
+
+            <div class="col-lg-6 hospital-card">
+
+                <div class="card">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <h5>City General Hospital</h5>
+
+                            <small>
+                                <i class="ti ti-map-pin"></i>
+                                MG Road, Bengaluru
+                            </small>
+
+                        </div>
+
+                        <span class="pill pill-green">
+                            Active
+                        </span>
+
+                    </div>
+
+                    <div class="row text-center">
+
+                        <div class="col-4">
+                            <h4 class="text-success">72</h4>
+                            <small>General Beds</small>
+                        </div>
+
+                        <div class="col-4">
+                            <h4 class="text-primary">14</h4>
+                            <small>ICU Beds</small>
+                        </div>
+
+                        <div class="col-4">
+                            <h4 class="text-warning">6</h4>
+                            <small>Emergency Beds</small>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+
+                        <button class="btn btn-primary btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#updateAvailabilityModal">
+
+                            Update Availability
+
+                        </button>
+
+                        <button class="btn btn-outline-secondary btn-sm hospital-detail-btn"
+                                data-hospital="City General Hospital"
+                                data-doctor="Dr. Rajesh Kumar"
+                                data-phone="+91 9876543210"
+                                data-location="MG Road, Bengaluru"
+                                data-bs-toggle="modal"
+                                data-bs-target="#hospitalDetailModal">
+
+                            View Details
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- APOLLO NORTH -->
+
+            <div class="col-lg-6 hospital-card">
+
+                <div class="card">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <h5>Apollo North</h5>
+
+                            <small>
+                                <i class="ti ti-map-pin"></i>
+                                Hebbal, Bengaluru
+                            </small>
+
+                        </div>
+
+                        <span class="pill pill-amber">
+                            Moderate
+                        </span>
+
+                    </div>
+
+                    <div class="row text-center">
+
+                        <div class="col-4">
+                            <h4 class="text-warning">45</h4>
+                            <small>General Beds</small>
+                        </div>
+
+                        <div class="col-4">
+                            <h4 class="text-warning">9</h4>
+                            <small>ICU Beds</small>
+                        </div>
+
+                        <div class="col-4">
+                            <h4 class="text-success">12</h4>
+                            <small>Emergency Beds</small>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+
+                        <button class="btn btn-primary btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#updateAvailabilityModal">
+
+                            Update Availability
+
+                        </button>
+
+                        <button class="btn btn-outline-secondary btn-sm hospital-detail-btn"
+                                data-hospital="Apollo North"
+                                data-doctor="Dr. Sandeep Rao"
+                                data-phone="+91 9988776655"
+                                data-location="Hebbal, Bengaluru"
+                                data-bs-toggle="modal"
+                                data-bs-target="#hospitalDetailModal">
+
+                            View Details
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+                        <!-- ST. MARY'S -->
+
+            <div class="col-lg-6 hospital-card">
+
+                <div class="card">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <h5>St. Mary's Hospital</h5>
+
+                            <small>
+                                <i class="ti ti-map-pin"></i>
+                                Jayanagar, Bengaluru
+                            </small>
+
+                        </div>
+
+                        <span class="pill pill-red">
+                            Almost Full
+                        </span>
+
+                    </div>
+
+                    <div class="row text-center">
+
+                        <div class="col-4">
+                            <h4 class="text-danger">8</h4>
+                            <small>General Beds</small>
+                        </div>
+
+                        <div class="col-4">
+                            <h4 class="text-danger">2</h4>
+                            <small>ICU Beds</small>
+                        </div>
+
+                        <div class="col-4">
+                            <h4 class="text-danger">1</h4>
+                            <small>Emergency Beds</small>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+
+                        <button class="btn btn-primary btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#updateAvailabilityModal">
+                            Update Availability
+                        </button>
+
+                        <button class="btn btn-outline-secondary btn-sm hospital-detail-btn"
+                                data-hospital="St. Mary's Hospital"
+                                data-doctor="Dr. Maria Joseph"
+                                data-phone="+91 9123456780"
+                                data-location="Jayanagar, Bengaluru"
+                                data-bs-toggle="modal"
+                                data-bs-target="#hospitalDetailModal">
+                            View Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SUNRISE -->
+
+            <div class="col-lg-6 hospital-card">
+
+                <div class="card">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <div>
+
+                            <h5>Sunrise Medical</h5>
+
+                            <small>
+                                <i class="ti ti-map-pin"></i>
+                                Whitefield, Bengaluru
+                            </small>
+
+                        </div>
+
+                        <span class="pill pill-green">
+                            Active
+                        </span>
+
+                    </div>
+
+                    <div class="row text-center">
+
+                        <div class="col-4">
+                            <h4 class="text-success">61</h4>
+                            <small>General Beds</small>
+                        </div>
+
+                        <div class="col-4">
+                            <h4 class="text-primary">18</h4>
+                            <small>ICU Beds</small>
+                        </div>
+
+                        <div class="col-4">
+                            <h4 class="text-success">9</h4>
+                            <small>Emergency Beds</small>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+
+                        <button class="btn btn-primary btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#updateAvailabilityModal">
+                            Update Availability
+                        </button>
+
+                        <button class="btn btn-outline-secondary btn-sm hospital-detail-btn"
+                                data-hospital="Sunrise Medical"
+                                data-doctor="Dr. Arun Shetty"
+                                data-phone="+91 9870011223"
+                                data-location="Whitefield, Bengaluru"
+                                data-bs-toggle="modal"
+                                data-bs-target="#hospitalDetailModal">
+                            View Details
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- REGISTERED HOSPITALS MODAL -->
+
+    <div class="modal fade" id="registeredHospitalsModal">
+
+        <div class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+                    <h5>Registered Hospitals</h5>
+                    <button class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th>Hospital</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>City General Hospital</td>
+                                <td>MG Road</td>
+                                <td>Active</td>
+                            </tr>
+
+                            <tr>
+                                <td>Apollo North</td>
+                                <td>Hebbal</td>
+                                <td>Moderate</td>
+                            </tr>
+
+                            <tr>
+                                <td>St. Mary's Hospital</td>
+                                <td>Jayanagar</td>
+                                <td>Almost Full</td>
+                            </tr>
+
+                            <tr>
+                                <td>Sunrise Medical</td>
+                                <td>Whitefield</td>
+                                <td>Active</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- GENERAL BEDS MODAL -->
+
+    <div class="modal fade" id="generalBedsModal">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-success text-white">
+                    <h5>General Bed Availability</h5>
+                    <button class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <table class="table">
+
+                        <tr>
+                            <td>City General</td>
+                            <td>72</td>
+                        </tr>
+
+                        <tr>
+                            <td>Apollo North</td>
+                            <td>45</td>
+                        </tr>
+
+                        <tr>
+                            <td>St. Mary's</td>
+                            <td>8</td>
+                        </tr>
+
+                        <tr>
+                            <td>Sunrise Medical</td>
+                            <td>61</td>
+                        </tr>
+
+                        <tr class="table-success">
+                            <th>Total</th>
+                            <th>186</th>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ICU MODAL -->
+
+    <div class="modal fade" id="icuBedsModal">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-danger text-white">
+                    <h5>ICU Bed Availability</h5>
+                    <button class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <table class="table">
+
+                        <tr>
+                            <td>City General</td>
+                            <td>14</td>
+                        </tr>
+
+                        <tr>
+                            <td>Apollo North</td>
+                            <td>9</td>
+                        </tr>
+
+                        <tr>
+                            <td>St. Mary's</td>
+                            <td>2</td>
+                        </tr>
+
+                        <tr>
+                            <td>Sunrise Medical</td>
+                            <td>18</td>
+                        </tr>
+
+                        <tr class="table-danger">
+                            <th>Total</th>
+                            <th>43</th>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- EMERGENCY MODAL -->
+
+    <div class="modal fade" id="emergencyBedsModal">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-warning">
+                    <h5>Emergency Bed Availability</h5>
+                    <button class="btn-close"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <table class="table">
+
+                        <tr>
+                            <td>City General</td>
+                            <td>6</td>
+                        </tr>
+
+                        <tr>
+                            <td>Apollo North</td>
+                            <td>12</td>
+                        </tr>
+
+                        <tr>
+                            <td>St. Mary's</td>
+                            <td>1</td>
+                        </tr>
+
+                        <tr>
+                            <td>Sunrise Medical</td>
+                            <td>9</td>
+                        </tr>
+
+                        <tr class="table-warning">
+                            <th>Total</th>
+                            <th>28</th>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- UPDATE AVAILABILITY MODAL -->
+
+    <div class="modal fade" id="updateAvailabilityModal">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+                    <h5>Update Bed Availability</h5>
+                    <button class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label>General Beds</label>
+                        <input type="number" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>ICU Beds</label>
+                        <input type="number" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Emergency Beds</label>
+                        <input type="number" class="form-control">
+                    </div>
+
+                    <button class="btn btn-primary w-100">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- HOSPITAL DETAILS MODAL -->
+
+    <div class="modal fade" id="hospitalDetailModal">
+
+        <div class="modal-dialog modal-xl">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-dark text-white">
+                    <h5 id="hospitalTitle">Hospital Details</h5>
+                    <button class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row mb-4">
+
+                        <div class="col-md-4">
+                            <strong>Chief Doctor</strong>
+                            <p id="doctorName"></p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <strong>Contact</strong>
+                            <p id="hospitalPhone"></p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <strong>Location</strong>
+                            <p id="hospitalLocation"></p>
+                        </div>
+
+                    </div>
+
+                    <h6 class="mb-3">Admitted Patients</h6>
+
+                    <table class="table table-bordered">
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Condition</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>P001</td>
+                                <td>Ravi Kumar</td>
+                                <td>45</td>
+                                <td>Cardiac Arrest</td>
+                                <td>Critical</td>
+                            </tr>
+
+                            <tr>
+                                <td>P002</td>
+                                <td>Priya Sharma</td>
+                                <td>34</td>
+                                <td>Accident Trauma</td>
+                                <td>Stable</td>
+                            </tr>
+
+                            <tr>
+                                <td>P003</td>
+                                <td>Arjun Singh</td>
+                                <td>52</td>
+                                <td>ICU Observation</td>
+                                <td>Under Treatment</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ADD HOSPITAL MODAL -->
+
+    <div class="modal fade" id="addHospitalModal">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+                    <h5>Add Hospital</h5>
+                    <button class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <input class="form-control mb-3"
+                           placeholder="Hospital Name">
+
+                    <input class="form-control mb-3"
+                           placeholder="Location">
+
+                    <input class="form-control mb-3"
+                           placeholder="Phone">
+
+                    <button class="btn btn-primary w-100">
+                        Register Hospital
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        document.getElementById("hospitalSearch")
+        .addEventListener("keyup", function() {
+
+            let value = this.value.toLowerCase();
+
+            document.querySelectorAll(".hospital-card")
+            .forEach(card => {
+
+                card.style.display =
+                card.innerText.toLowerCase().includes(value)
+                ? "block"
+                : "none";
+
+            });
+
+        });
+
+        document.querySelectorAll(".hospital-detail-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", function(){
+
+                document.getElementById("hospitalTitle").innerText =
+                this.dataset.hospital;
+
+                document.getElementById("doctorName").innerText =
+                this.dataset.doctor;
+
+                document.getElementById("hospitalPhone").innerText =
+                this.dataset.phone;
+
+                document.getElementById("hospitalLocation").innerText =
+                this.dataset.location;
+
+            });
+
+        });
+
+    </script>
+<script src="../JS/script.js"></script>
+</body>
+</html>
